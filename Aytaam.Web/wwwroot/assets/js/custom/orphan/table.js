@@ -40,8 +40,8 @@ var KTOrphansList = function () {
                 "data": function (d) {
                     return $.extend({}, d, {
                         "OrphanType": $("#OrphanTypeFilter").val(),
-                        "IsActive": $("#AgeGroupFilter").val(),
-                        "IsActive": $("#SponsorshipTypeFilter").val(),
+                        "AgeGroup": $("#AgeGroupFilter").val(),
+                        "SponsorshipType": $("#SponsorshipTypeFilter").val(),
                     });
                 }
             },
@@ -159,15 +159,21 @@ var KTOrphansList = function () {
 
     // Filter Datatable
     var handleFilterDatatable = () => {
+
         // Select filter options
         $('#OrphanTypeFilter').on('select2:select', function (e) {
             datatable.draw();
         }); $('#OrphanTypeFilter').on('select2:clear', function (e) {
             datatable.draw();
         });
-        $('#IsActiveFilter').on('select2:select', function (e) {
+        $('#AgeGroupFilter').on('select2:select', function (e) {
             datatable.draw();
-        }); $('#IsActiveFilter').on('select2:clear', function (e) {
+        }); $('#AgeGroupFilter').on('select2:clear', function (e) {
+            datatable.draw();
+        });
+        $('#SponsorshipTypeFilter').on('select2:select', function (e) {
+            datatable.draw();
+        }); $('#SponsorshipTypeFilter').on('select2:clear', function (e) {
             datatable.draw();
         });
     }
@@ -189,48 +195,6 @@ var KTOrphansList = function () {
                 '[data-control="select2"], [data-kt-select2="true"]'
             )
         );
-        $('#kt_table_orphans [data-control="select2"],#kt_table_orphans  [data-kt-select2="true"]').on('select2:select', function (e) {
-            var id = e.target.getAttribute("data-userId")
-            e.target.previousElementSibling.classList.remove("d-none")
-            e.target.disabled = true;
-
-            var fromdata = new FormData();
-
-            fromdata.append("Id", id);
-            fromdata.append("OrphanType", e.target.value);
-            $.ajax({
-                url: '/Admin/Orphan/ChangeOrphanType',
-                method: "POST",
-                data: fromdata,
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function ({ msg, status }) {
-                    if (status == 0) {
-                        toastr.error(msg);
-
-                    } else {
-                        toastr.success(msg);
-
-                    }
-                    // Enable button
-                    e.target.disabled = false;
-                    e.target.previousElementSibling.classList.add("d-none")
-
-
-                    // Show popup confirmation 
-
-                },
-                error: function () {
-                    e.target.disabled = false;
-                    e.target.previousElementSibling.classList.add("d-none")
-                    toastr.error("آسف، يبدو أن هناك بعض الأخطاء التي تم اكتشافها، من فضلك حاول مرة أخرى.");
-                }
-            });
-
-
-
-        });
         elements.map(function (element) {
             if (element.getAttribute("data-kt-initialized") === "1") {
                 return;

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aytaam.Data.Migrations
 {
     [DbContext(typeof(AytaamDbContext))]
-    [Migration("20250227090451_V12")]
-    partial class V12
+    [Migration("20250227124803_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,9 +146,6 @@ namespace Aytaam.Data.Migrations
                     b.Property<string>("Residence")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SponsorshipType")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TotalFamilyMembers")
                         .HasColumnType("int");
 
@@ -189,8 +186,8 @@ namespace Aytaam.Data.Migrations
                     b.Property<string>("SponsorName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SponsorshipType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("SponsorshipType")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");

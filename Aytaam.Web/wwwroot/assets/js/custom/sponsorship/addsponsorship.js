@@ -18,30 +18,49 @@ var KTSponsorshipsAddSponsorship = function () {
             dateFormat: "M/d/Y",
         });
 
-        var authid = {
-            validators: {
-                notEmpty: {
-                    message: 'اسم المؤلف مطلوب'
-                }
-            }
 
-        };
-        var authname = {
-            validators: {
-                notEmpty: {
-                    message: 'اسم المؤلف مطلوب'
-                }
-            }
-        };
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         var validator = FormValidation.formValidation(
             form,
             {
                 fields: {
-                    'Title': {
+                    'OrphanCode': {
                         validators: {
                             notEmpty: {
-                                message: 'العنوان مطلوب'
+                                message: ' حدد اليتيم'
+                            }
+                        }
+                    },
+                    'SponsorName': {
+                        validators: {
+                            notEmpty: {
+                                message: ' حدد المتكفل'
+                            }
+                        }
+                    },
+                    'Amount': {
+                        validators: {
+                            notEmpty: {
+                                message: ' حدد المبلغ'
+                            }
+                        }
+                    },
+                    'StartDate': {
+                        validators: {
+                            notEmpty: {
+                                message: ' حدد بدايتها'
+                            }
+                        }
+                    }, 'EndDate': {
+                        validators: {
+                            notEmpty: {
+                                message: ' حدد نهايتها'
+                            }
+                        }
+                    }, 'SponsorshipType': {
+                        validators: {
+                            notEmpty: {
+                                message: ' نوع الكفالة'
                             }
                         }
                     },
@@ -84,6 +103,7 @@ var KTSponsorshipsAddSponsorship = function () {
                         var fromdata = new FormData();
 
                         fromdata.append("Id", $('#Id').val());
+                        fromdata.append("OrphanCode", $('#OrphanCode').val());
                         fromdata.append("SponsorName", $('#SponsorName').val());
                         fromdata.append("Amount", $('#Amount').val());
                         fromdata.append("StartDate", $('#StartDate').val());
@@ -218,11 +238,17 @@ var KTSponsorshipsAddSponsorship = function () {
     }
     var initSelect2 = () => {
         var element = document.querySelector('#SponsorshipType')
+        var OrphanCode = document.querySelector('#OrphanCode')
         if (element.getAttribute("data-kt-initialized") === "1") {
+            return;
+        }
+        if (OrphanCode.getAttribute("data-kt-initialized") === "1") {
             return;
         }
 
         var options = {
+            dir: document.body.getAttribute("direction"),
+        }; var options2 = {
             dir: document.body.getAttribute("direction"),
         };
 
@@ -230,8 +256,11 @@ var KTSponsorshipsAddSponsorship = function () {
         if (element.getAttribute("data-hide-search") == "true") {
             options.minimumResultsForSearch = Infinity;
         }
+        if (OrphanCode.getAttribute("data-hide-search") == "true") {
+            options2.minimumResultsForSearch = Infinity;
+        }
 
-        $(element).select2(options);
+        $(element).select2(options); $(OrphanCode).select2(options2);
         element.setAttribute("data-kt-initialized", "1");
     }
     return {

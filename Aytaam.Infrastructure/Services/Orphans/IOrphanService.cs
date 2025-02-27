@@ -13,5 +13,5 @@ public interface IOrphanService
     Task UpdateAsync(InputOrphanDto input);
     Task DeleteAsync(string id);
     Task ChangeOrphanTypeAsync(string id, OrphanType userType);
-    Task<List<BaseViewModel<string>>> ListAsync(OrphanType? userType = null);
+    Task<List<BaseViewModel<string>>> ListAsync();
 }

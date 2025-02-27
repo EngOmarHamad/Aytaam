@@ -40,8 +40,7 @@ var KTSponsorshipsList = function () {
                 "data": function (d) {
                     return $.extend({}, d, {
                         "SponsorshipType": $("#SponsorshipTypeFilter").val(),
-                        "IsActive": $("#AgeGroupFilter").val(),
-                        "IsActive": $("#SponsorshipTypeFilter").val(),
+                        "OrphanCode": $("#OrphanNamesFilter").val(),
                     });
                 }
             },
@@ -138,9 +137,9 @@ var KTSponsorshipsList = function () {
         }); $('#SponsorshipTypeFilter').on('select2:clear', function (e) {
             datatable.draw();
         });
-        $('#IsActiveFilter').on('select2:select', function (e) {
+        $('#OrphanNamesFilter').on('select2:select', function (e) {
             datatable.draw();
-        }); $('#IsActiveFilter').on('select2:clear', function (e) {
+        }); $('#OrphanNamesFilter').on('select2:clear', function (e) {
             datatable.draw();
         });
     }

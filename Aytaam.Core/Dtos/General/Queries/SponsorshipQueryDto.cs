@@ -2,6 +2,7 @@
 {
     public class SponsorshipQueryDto : QueryDto
     {
-        public string? OrphanId { get; set; }
+        public string? OrphanCode { get; set; }
+        public SponsorshipType? SponsorshipType { get; set; }
     }
 }

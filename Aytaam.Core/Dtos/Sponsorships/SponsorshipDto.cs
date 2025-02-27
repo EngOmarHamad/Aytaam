@@ -8,10 +8,10 @@ public class SponsorshipDto
     public int? Duration { get; set; } // مدتها بالأشهر
     public decimal? Amount { get; set; } // المبلغ
     public string? SponsorName { get; set; } // اسم المتكفل
-    public string? SponsorshipType { get; set; } // نوع الكفالة
+    public SponsorshipType? SponsorshipType { get; set; } // نوع الكفالة
     public int? RemainingPeriod { get; set; } // الفترة المتبقية بالأشهر
     public string? Notes { get; set; } // ملاحظات
 
-    public int? OrphanId { get; set; }
+    public string? OrphanCode { get; set; }
     public string? OrphanName { get; set; } // اسم اليتيم
 }

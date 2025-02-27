@@ -22,9 +22,24 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
         {
             dbQuery = dbQuery.Where(x => x.OrphanType != null && x.OrphanType == query.OrphanType);
         }
-        if (query.SponsorshipType != null)
+
+
+        if (query.AgeGroup != null)
+
         {
-            dbQuery = dbQuery.Where(x => x.SponsorshipType != null && x.SponsorshipType == query.SponsorshipType);
+            DateTime today = DateTime.Today;
+            dbQuery = query.AgeGroup switch
+            {
+                AgeGroup.Age_0_5 => dbQuery.Where(x => EF.Functions.DateDiffYear(x.DateOfBirth, today) >= 0 &&
+                                                       EF.Functions.DateDiffYear(x.DateOfBirth, today) <= 5),
+                AgeGroup.Age_6_10 => dbQuery.Where(x => EF.Functions.DateDiffYear(x.DateOfBirth, today) >= 6 &&
+                                                        EF.Functions.DateDiffYear(x.DateOfBirth, today) <= 10),
+                AgeGroup.Age_11_15 => dbQuery.Where(x => EF.Functions.DateDiffYear(x.DateOfBirth, today) >= 11 &&
+                                                         EF.Functions.DateDiffYear(x.DateOfBirth, today) <= 15),
+                AgeGroup.Age_16_18 => dbQuery.Where(x => EF.Functions.DateDiffYear(x.DateOfBirth, today) >= 16 &&
+                                                         EF.Functions.DateDiffYear(x.DateOfBirth, today) <= 18),
+                _ => dbQuery
+            };
         }
 
         return await dbQuery.ToListAsync();
@@ -53,6 +68,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
             Residence = input.Residence,
             DateOfBirth = input.DateOfBirth,
             NumberOfSiblings = input.NumberOfSiblings,
+            OrphanType = input.OrphanType,
             TotalFamilyMembers = input.TotalFamilyMembers,
             GuardianRelation = input.GuardianRelation,
             GuardianName = input.GuardianName,
@@ -153,14 +169,9 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
 
     }
 
-    public async Task<List<BaseViewModel<string>>> ListAsync(OrphanType? userType)
+    public async Task<List<BaseViewModel<string>>> ListAsync()
     {
         var users = _db.TblOrphans.AsQueryable();
-
-        if (userType.HasValue && userType != null)
-        {
-            users = users.Where(x => x.OrphanType == userType);
-        }
 
         return await users.Select(x => new BaseViewModel<string>()
         {

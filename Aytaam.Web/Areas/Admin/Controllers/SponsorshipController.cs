@@ -33,7 +33,7 @@ public class SponsorshipController : BaseController<SponsorshipController>
         {
             return View(new SponsorshipsIndexViewModel()
             {
-                OrphanNames = [.. (await _orphanService.ListAsync()).Select(o => new SelectListItem() { Text = o.Id, Value = o.Name })],
+                OrphanNames = [.. (await _orphanService.ListAsync()).Select(o => new SelectListItem() { Text = o.Name, Value = o.Id })],
                 SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
             });
         }
@@ -110,10 +110,12 @@ public class SponsorshipController : BaseController<SponsorshipController>
                 StartDate = SponsorshipDto.StartDate,
                 Amount = SponsorshipDto.Amount,
                 Duration = SponsorshipDto.Duration,
+                SponsorshipType = SponsorshipDto.SponsorshipType,
+                OrphanCode = SponsorshipDto.OrphanCode
+
 
             };
             var addedSponsorship = await _SponsorshipService.CreateAsync(SponsorshipAdd);
-            await _SponsorshipService.UpdateAsync(SponsorshipAdd);
             return Ok(new JsonResponse<string>() { Status = 1, Data = addedSponsorship, Msg = "تم الإضافة بنجاح" });
         }
         else
@@ -139,6 +141,7 @@ public class SponsorshipController : BaseController<SponsorshipController>
             }
         }
         item.SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })];
+        item.OrphanNames = [.. (await _orphanService.GetAllAsync()).Select(X => new SelectListItem() { Text = X.FullName, Value = X.Code.ToString() })];
         return PartialView("Partials/Sponsorship/AddOrUpdateSponsorship", item);
     }
     [HttpPost]

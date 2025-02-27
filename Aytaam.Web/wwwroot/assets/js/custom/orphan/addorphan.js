@@ -43,14 +43,14 @@ var KTAddOrphan = function () {
                                 message: ' حالة اليتيم حقل مطلوب'
                             }
                         }
-                    },
-                    SponsorshipType: {
+                    }, Residence: {
                         validators: {
                             notEmpty: {
-                                message: 'حالة الكفالة حقل مطلوب'
+                                message: ' السكن حقل مطلوب'
                             }
                         }
-                    }, DateOfBirth: {
+                    },
+                    DateOfBirth: {
                         validators: {
                             notEmpty: {
                                 message: 'تاريخ الميلاد حقل مطلوب'
@@ -137,12 +137,13 @@ var KTAddOrphan = function () {
                     submitButton.disabled = true;
                     // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     var fromdata = new FormData();
+                    console.log($('#OrphanType').val())
 
                     fromdata.append("Code", $('#Code').val());
                     fromdata.append("NationalIdNumber", $('#NationalIdNumber').val());
                     fromdata.append("FullName", $('#FullName').val());
                     fromdata.append("OrphanType", $('#OrphanType').val());
-                    fromdata.append("SponsorshipType", $('#SponsorshipType').val());
+                    fromdata.append("Residence", $('#Residence').val());
                     fromdata.append("DateOfBirth", $('#DateOfBirth').val());
                     fromdata.append("Notes", $('#Notes').val());
                     fromdata.append("MedicalCondition", $('#MedicalCondition').val());

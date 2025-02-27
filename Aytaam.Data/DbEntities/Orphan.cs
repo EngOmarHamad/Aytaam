@@ -18,7 +18,6 @@ public class Orphan
     public string? GuardianName { get; set; } // اسم الوصي
     public string? Notes { get; set; } // ملاحظات
     public string? WhatsApp { get; set; }
-    public SponsorshipType? SponsorshipType { get; set; }
     public OrphanType? OrphanType { get; set; }
     public virtual List<Sponsorship>? Sponsorships { get; set; }
 }

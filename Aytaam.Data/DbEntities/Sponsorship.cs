@@ -8,12 +8,12 @@ public class Sponsorship
     public int? Duration { get; set; } // مدتها بالأشهر
     public decimal? Amount { get; set; } // المبلغ
     public string? SponsorName { get; set; } // اسم المتكفل
-    public string? SponsorshipType { get; set; } // نوع الكفالة
+    public SponsorshipType? SponsorshipType { get; set; } // نوع الكفالة
     public int? RemainingPeriod { get; set; } // الفترة المتبقية بالأشهر
     public string? Notes { get; set; } // ملاحظات
 
-    public string? OrphanId { get; set; }
-    [ForeignKey(nameof(OrphanId))]
+    public string? OrphanCode { get; set; }
+    [ForeignKey(nameof(OrphanCode))]
     public virtual Orphan Orphan { get; set; }
     public DateTime? CreatedAt { get; set; } = DateTime.UtcNow; // تاريخ الإنشاء
     public DateTime? UpdatedAt { get; set; } // تاريخ آخر تحديث

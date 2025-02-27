@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Aytaam.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class V12 : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,7 +72,6 @@ namespace Aytaam.Data.Migrations
                     GuardianName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WhatsApp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SponsorshipType = table.Column<int>(type: "int", nullable: true),
                     OrphanType = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -212,7 +211,7 @@ namespace Aytaam.Data.Migrations
                     Duration = table.Column<int>(type: "int", nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     SponsorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SponsorshipType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SponsorshipType = table.Column<int>(type: "int", nullable: true),
                     RemainingPeriod = table.Column<int>(type: "int", nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrphanId = table.Column<string>(type: "nvarchar(450)", nullable: true),

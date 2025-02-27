@@ -24,7 +24,13 @@
                 <div class="scroll-y me-n7 px-7" id="kt_modal_addOrUpdate_sponsorship_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_addOrUpdate_sponsorship_header" data-kt-scroll-wrappers="#kt_modal_addOrUpdate_sponsorship_scroll" data-kt-scroll-offset="300px">
                     <input asp-for="Id" id="Id" hidden />
 
+                    <div class="fv-row   mb-7">
+                        <label class="required fw-semibold fs-6 mb-2" asp-for="OrphanCode"></label>
+                        <select class="form-select form-select-solid fw-bold" id="OrphanCode" asp-items="Model.OrphanNames" data-kt-select2="true" data-placeholder="اختر اسم اليتيم " data-allow-clear="true" data-kt-sponsorship-table-filter="two-step">
+                        </select>
+                    </div>
                     <div class="row row-cols-1 row-cols-md-2">
+
                         <div class="fv-row col  mb-7">
                             <label class="required fw-semibold fs-6 mb-2" asp-for="SponsorName"></label>
                             <input asp-for="SponsorName" id="SponsorName" class="form-control form-control-sol mb-3 mb-lg-0" placeholder="اسم المتكفل" />

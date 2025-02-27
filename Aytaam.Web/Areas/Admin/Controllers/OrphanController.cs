@@ -1,4 +1,5 @@
 ﻿using Aytaam.Core.Dtos.Orphans;
+using Aytaam.Core.Enums;
 using Aytaam.Core.ViewModels.Orphans;
 using Aytaam.Infrastructure.Services.Orphans;
 
@@ -62,10 +63,33 @@ public class OrphanController(IMapper mapper, UserManager<Account> userManager, 
 
         data = data.Skip(skip).Take(pageSize);
         List<OrphanDto> orphans = [];
+
+
         foreach (var item in data)
         {
             var dto = _mapper.Map<OrphanDto>(item);
+            var list = item.Sponsorships;
+            var sposership = SponsorshipType.UnSponsored;
+            if (item.Sponsorships != null && item.Sponsorships.Count != 0)
+            {
+                var s = item.Sponsorships.Select(x => x.SponsorshipType).ToList();
+                if (s.Contains(SponsorshipType.Full))
+                {
+                    sposership = SponsorshipType.Full;
+                }
+                else
+                {
+                    sposership = SponsorshipType.Partial;
+                }
+            }
+            dto.SponsorshipType = sposership;
             orphans.Add(dto);
+
+
+        }
+        if (query.SponsorshipType != null)
+        {
+            orphans = orphans.Where(x => x.SponsorshipType != null && x.SponsorshipType == query.SponsorshipType).ToList();
         }
         var dataTableObj = new
         {

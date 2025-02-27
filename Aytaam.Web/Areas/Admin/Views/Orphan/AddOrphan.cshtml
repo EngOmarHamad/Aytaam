@@ -110,6 +110,7 @@
                     <input asp-for="Dto.FullName" id="FullName" name="FullName" class="form-control" />
                 </div>
             </div>
+
             <div class="row fv-row mb-7">
                 <div class="col-md-2 text-md-end">
                     <label class="fs-6 fw-semibold form-label mt-3">
@@ -119,6 +120,17 @@
                 </div>
                 <div class="col-md-10">
                     <input asp-for="Dto.NationalIdNumber" id="NationalIdNumber" name="NationalIdNumber" class="form-control" />
+                </div>
+            </div>
+            <div class="row fv-row mb-7">
+                <div class="col-md-2 text-md-end">
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span class="required">السكن	 </span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="السكن"></i>
+                    </label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Dto.Residence" id="Residence" name="Residence" class="form-control" />
                 </div>
             </div>
             <div class="row fv-row mb-7">
@@ -136,21 +148,6 @@
                             <option></option>
                         </select>
 
-                    </div>
-                </div>
-            </div>
-            <div class="row fv-row mb-7">
-                <div class="col-md-2 text-md-end">
-                    <label class="fs-6 fw-semibold form-label mt-3">
-                        <span>حالة الكفالة</span>
-                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="حدد حالة الكفالة"></i>
-                    </label>
-                </div>
-                <div class="col-md-10">
-                    <div class="w-100">
-                        <select class="form-select " asp-for="Dto.SponsorshipType" name="SponsorshipType" id="SponsorshipType" asp-items="Model.SponsorshipTypes" data-control="select2" data-hide-search="true" data-placeholder="Select a layout">
-                            <option></option>
-                        </select>
                     </div>
                 </div>
             </div>

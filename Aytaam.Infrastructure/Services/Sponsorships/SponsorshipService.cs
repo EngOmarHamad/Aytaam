@@ -15,11 +15,15 @@ public class SponsorshipService : ISponsorshipService
 
         if (!string.IsNullOrWhiteSpace(query.GeneralSearch))
         {
-            dbQuery = dbQuery.Where(x => x.SponsorName != null && x.SponsorName.Trim().ToLower().Contains(query.GeneralSearch.Trim().ToLower()));
+            dbQuery = dbQuery.Where(x => x.SponsorName != null && x.SponsorName.Trim().Contains(query.GeneralSearch.Trim(), StringComparison.CurrentCultureIgnoreCase));
         }
-        if (query.OrphanId != null)
+        if (query.OrphanCode != null)
         {
-            dbQuery = dbQuery.Where(x => x.OrphanId != null && x.OrphanId == query.OrphanId);
+            dbQuery = dbQuery.Where(x => x.Orphan.Code != null && x.Orphan.Code == query.OrphanCode);
+        }
+        if (query.SponsorshipType != null)
+        {
+            dbQuery = dbQuery.Where(x => x.SponsorshipType != null && x.SponsorshipType == query.SponsorshipType);
         }
         return await dbQuery.ToListAsync();
     }
