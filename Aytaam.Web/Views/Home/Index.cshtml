@@ -1,0 +1,153 @@
+﻿@using Aytaam.Core.Constants;
+@using Aytaam.Core.Dtos.Orphans
+@using Aytaam.Core.ViewModels.Orphans
+@model OrphansIndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}<style>
+     .hero-area {
+         background: #13263c;
+     }
+
+     .contact-section .contact-form .single-input {
+         margin-bottom: 30px
+     }
+</style>
+<link href="~/assets/plugins/custom/intl-tel-input/css/intltelinput.css" rel="stylesheet" />
+<style>
+    .st0 {
+        fill: url(#SVGID_1_)
+    }
+
+    .st1 {
+        fill: url(#SVGID_2_)
+    }
+
+    .st2 {
+        fill: url(#SVGID_3_)
+    }
+
+    .st3 {
+        fill: url(#SVGID_4_)
+    }</style>
+@section PageHeader {
+
+    <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
+        <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-15">
+            <br />
+            <span>
+                <span id="kt_landing_hero_text" class="text-success"></span>
+            </span>
+        </h1>
+    </div>
+
+}
+
+
+
+<div class="modal fade" tabindex="-1" id="kt_modal_baseModel"></div>
+<div class="container-lg">
+    <div class="row">
+        <h1>الأيتام</h1>
+        <div class=" row align-items-center border-0 pt-6">
+            <div class="card-title mx-0 my-1 d-block  ">
+                <div class="row row-cols-4">
+                    <div class="d-flex col align-items-center position-relative my-1">
+                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <input data-kt-orphan-table-filter="search" class="form-control form-control-solid w-100 ps-14 fw-bold" data-bs-toggle="tooltip" title=" بحث من خلال الاسم أو كود اليتيم " placeholder="  بحث من خلال الاسم أو كود اليتيم " />
+                    </div>
+                    <div class="col my-1">
+                        <select class="form-select form-select-solid fw-bold" id="OrphanTypeFilter"
+                                asp-items="Model.OrphanTypes" data-kt-select2="true" data-placeholder="اختر نوع اليتيم " data-allow-clear="true" data-kt-orphan-table-filter="two-step" data-hide-search="true">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="col my-1">
+                        <select class="form-select form-select-solid fw-bold" id="AgeGroupFilter" asp-items="Model.AgeGroups" data-kt-select2="true" data-placeholder="اختر الفئة العمرية" data-allow-clear="true" data-kt-orphan-table-filter="two-step" data-hide-search="true">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="col my-1">
+                        <select class="form-select form-select-solid fw-bold" id="SponsorshipTypeFilter" asp-items="Model.SponsorshipTypes" data-kt-select2="true" data-placeholder="اختر حالة الكفالة  " data-allow-clear="true" data-kt-orphan-table-filter="two-step" data-hide-search="true">
+                            <option></option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>    <div class="row  row-cols-lg-3">
+        <div class="col p2 ">
+            <div class="card text-center mx-auto mt-5" style="width: 22rem;">
+                <div class="position-relative">
+                    <img src="~/files/download.jpeg" class="card-img-top" alt="صورة الطفل" style="height: 250px; object-fit: cover;">
+                    <span class="position-absolute bg-dark text-white p-1 rounded" style="top:10px;right:10px">تكلفة الكفالة: 400 ريال</span>
+                </div>
+                <div class="card-body p-3">
+                    <div class="progress   mb-3">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                    <h5 class="card-title">أهلًا، أنا علاء وعمري 10 سنوات</h5>
+                    <div class="d-flex justify-content-between  p-2" style="background:#fff9eb">
+                        <div class="text-center ">
+                            <p class="mb-1 text-warning fw-bold">الفترة المكفولة</p>
+                            <strong>6 أشهر</strong>
+                        </div>
+                        <div class="text-center">
+                            <p class="mb-1 text-warning fw-bold">فترة الكفالة المتبقية</p>
+                            <strong>6 أشهر</strong>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+
+                        <button class="btn btn-success w-100">تبرع الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<div class="position-fixed w-100 h-100   top-0 start-0" id="promo" style="display:none; z-index:1000;background-color:rgba(0,0,0,.4);backdrop-filter:blur(10px)">
+<div class="d-flex justify-content-start align-items-center  position-absolute top-0 start-0 "><button id="closeBtn" class="btn btn-close  w-50px h-50px " style="background-size:25px"></button></div>
+<div class="d-flex justify-content-center align-items-center h-100"><video controls="controls" class="min-w-lg-75 min-h-lg-75 mw-lg-75 mh-lg-75 object-fit-cover"><source src="~/1.mp4" type="video/mp4" /></video></div>
+</div>*@
+
+@section Scripts {
+    <script src="~/assets/plugins/custom/intl-tel-input/js/intltelinput.min.js"></script>
+    <script src="~/assets/plugins/custom/intl-tel-input/js/intltelinput-jquery.min.js"></script>
+    <script src="~/assets/js/custom/landing.js" asp-append-version="true"></script>
+    <script src="~/assets/js/custom/opinionpoll/addopinionpoll.js" asp-append-version="true"></script>
+    <script src="~/assets/plugins/custom/fslightbox/fslightbox.bundle.js" asp-append-version="true"></script>
+    <script src="~/assets/js/custom/boardads/boarddetail.js" asp-append-version="true"></script>
+
+    <script>
+        function ShowShareModel(Id) {
+            $.ajax({
+                type: 'POST',
+                url: '/BoardAds/RenderShareTypeBoard',
+                data: { Id },
+                success: function (layout) {
+                    if (layout.status == 0) toastr.error(layout.msg);
+                    else {
+                        $("#kt_modal_baseModel").html(layout);
+                        $("#kt_modal_baseModel").modal("show");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(error)
+                    console.log(xhr)
+                    console.log(status)
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,167 @@
+﻿using Aytaam.Core.Constants;
+using Aytaam.Core.Dtos.Orphans;
+
+namespace Aytaam.Infrastructure.Services.Orphans;
+public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService fileService) : IOrphanService
+{
+    private readonly AytaamDbContext _db = db;
+    private readonly IMapper _mapper = mapper;
+    private readonly IFileService _fileService = fileService;
+
+    public async Task<int> GetCountAsync() => await _db.TblOrphans.CountAsync();
+
+    public async Task<List<Orphan>> GetAllAsync() => await _db.TblOrphans.ToListAsync();
+    public async Task<List<Orphan>> GetAllAsync(OrphanQueryDto query)
+    {
+        var dbQuery = _db.TblOrphans.AsQueryable();
+        if (!string.IsNullOrWhiteSpace(query.GeneralSearch))
+        {
+            dbQuery = dbQuery.Where(x => x.FullName != null && x.FullName.Contains(query.GeneralSearch));
+        }
+        if (query.OrphanType != null)
+        {
+            dbQuery = dbQuery.Where(x => x.OrphanType != null && x.OrphanType == query.OrphanType);
+        }
+        if (query.SponsorshipType != null)
+        {
+            dbQuery = dbQuery.Where(x => x.SponsorshipType != null && x.SponsorshipType == query.SponsorshipType);
+        }
+
+        return await dbQuery.ToListAsync();
+    }
+
+    public async Task<InputOrphanDto> GetAsync(string code)
+    {
+        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code);
+        return user == null ? null : _mapper.Map<InputOrphanDto>(user);
+    }
+
+    public async Task<string> GetOrphanFullNameAsync(string code)
+    {
+        var fullname = (await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code))?.FullName;
+        return fullname ?? throw new Exception();
+    }
+    public async Task<string?> CreateAsync(InputOrphanDto input)
+    {
+        input.Code = await GenerateOrphanCodeAsync();
+
+        ///Here write a code to generate code for Orphan
+        var orphan = new Orphan()
+        {
+
+            FullName = input.FullName,
+            WhatsApp = input.WhatsApp,
+            MedicalCondition = input.MedicalCondition,
+            Residence = input.Residence,
+            DateOfBirth = input.DateOfBirth,
+            NumberOfSiblings = input.NumberOfSiblings,
+            TotalFamilyMembers = input.TotalFamilyMembers,
+            GuardianRelation = input.GuardianRelation,
+            GuardianName = input.GuardianName,
+            Notes = input.Notes,
+
+        };
+        if (input.Image != null)
+            orphan.ImagePath = (await _fileService.UploadAsync(input.Image, FolderNames.OrphansImages)).Item1;
+
+        var createOrphanResult = await _db.TblOrphans.AddAsync(orphan);
+
+        if (await _db.SaveChangesAsync() == 0)
+        {
+            throw new Exception("لم تنجح إضافة يتيم جديد");
+
+        }
+
+        return input.Code;
+    }
+
+
+    private async Task<string> GenerateOrphanCodeAsync()
+    {
+        while (true)
+        {
+            string randomPart = new Random().Next(100000, 999999).ToString(); // رقم عشوائي 6 أرقام
+            var Code = $"ORP-{randomPart}";
+            var orphanCodes = (await GetAllAsync()).Select(o => o.Code).ToList();
+            if (!orphanCodes.Contains(Code))
+            {
+                return Code;
+            }
+        }
+        //string datePart = DateTime.UtcNow.ToString("yyyyMMdd"); // جزء التاريخ
+    }
+    public async Task UpdateAsync(InputOrphanDto input)
+    {
+
+
+        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == input.Code) ?? throw new InvalidOperationException();
+
+        _mapper.Map(input, user);
+        if (input.Image != null)
+            user.ImagePath = (await _fileService.UploadAsync(input.Image, FolderNames.OrphansImages)).Item1;
+
+        user.FullName = input.FullName;
+        user.WhatsApp = input.WhatsApp;
+        user.MedicalCondition = input.MedicalCondition;
+        user.Residence = input.Residence;
+        user.DateOfBirth = input.DateOfBirth;
+        user.NumberOfSiblings = input.NumberOfSiblings;
+        user.TotalFamilyMembers = input.TotalFamilyMembers;
+        user.GuardianRelation = input.GuardianRelation;
+        user.GuardianName = input.GuardianName;
+        user.Notes = input.Notes;
+        _db.TblOrphans.Update(user);
+
+        if (await _db.SaveChangesAsync() == 0)
+        {
+            throw new Exception("لم تنجح عملية التحديث  ");
+
+        }
+
+
+    }
+
+
+    public async Task DeleteAsync(string code)
+    {
+        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code) ?? throw new InvalidOperationException();
+        _db.TblOrphans.Remove(user);
+        if (await _db.SaveChangesAsync() == 0)
+        {
+            throw new Exception("لم تنجح عملية الحذف  ");
+
+        }
+    }
+
+
+    public async Task ChangeOrphanTypeAsync(string code, OrphanType orphanType)
+    {
+        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code) ?? throw new InvalidOperationException();
+        user.OrphanType = orphanType;
+        _db.TblOrphans.Update(user);
+        if (await _db.SaveChangesAsync() == 0)
+        {
+            throw new Exception("لم تنجح عملية التحديث  ");
+
+        }
+
+    }
+
+    public async Task<List<BaseViewModel<string>>> ListAsync(OrphanType? userType)
+    {
+        var users = _db.TblOrphans.AsQueryable();
+
+        if (userType.HasValue && userType != null)
+        {
+            users = users.Where(x => x.OrphanType == userType);
+        }
+
+        return await users.Select(x => new BaseViewModel<string>()
+        {
+            Id = x.Code,
+            Name = x.FullName
+        }).ToListAsync();
+    }
+
+
+}

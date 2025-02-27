@@ -1,0 +1,51 @@
+﻿@using Aytaam.Core.ViewModels;
+@using Aytaam.Core.ViewModels.Accounts;
+@model LoginViewModel
+
+<div class="row m-0 p-0 justify-content-center min-vh-100 align-items-center">
+
+    <div class="col-lg-6">
+        <div class="bg-body  align-items-center d-flex flex-column flex-center rounded-4 w-md-600px mx-auto p-7">
+            <div class="d-flex flex-center flex-column align-items-stretch h-lg-100 w-md-400px">
+                <div class="d-flex flex-center flex-column-fluid pb-15">
+                    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" asp-controller="Accounts" asp-area="Identity" asp-action="Login" method="post">
+
+                        <div class="d-flex d-lg-none justify-content-center flex-column align-items-center">
+                            <img class="theme-light-show mx-auto mw-100 w-100px w-lg-150px" src="~/assets/Images/Logo.png" asp-append-version=true alt="">
+                            <img class="theme-dark-show mx-auto mw-100  w-100px w-lg-150px" src="~/assets/Images/Logo.png" asp-append-version=true alt="">
+                            <h5 class="opacity-75-hover text-success me-1 mb-10">أَهْلًا وَسَهْلًا بِكُم فِي مَوْقِع أيتام</h5>
+
+                        </div><div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="text-center mb-11">
+                            <h1 class="text-dark fw-bolder mb-3">تسجيل دخول</h1>
+                        </div>
+                        <div class="fv-row mb-8">
+                            <input placeholder="أدخل بريد إلكتروني" asp-for="Email" autocomplete="off" class="form-control bg-transparent" />
+                        </div>
+                        <div class="fv-row mb-3">
+                            <input type="password" placeholder="أدخل كلمة المرور" asp-for="Password" autocomplete="off" class="form-control bg-transparent" />
+                        </div>
+
+                        <div class="d-grid mb-10">
+                            <button type="submit" data-kt-signIn-modal-action="submit" class="btn btn-success">
+                                <span class="indicator-label">تسجيل دخول</span>
+                                <span class="indicator-progress">
+                                    ... انتظر من فضلك
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/assets/js/custom/authentication/sign-in/general.js" asp-append-version="true"></script>
+}

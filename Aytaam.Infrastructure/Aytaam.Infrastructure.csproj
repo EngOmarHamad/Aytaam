@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="14.0.0" />
+		<PackageReference Include="Humanizer" Version="2.14.1" />
+		<PackageReference Include="MailKit" Version="4.10.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.DynamicLinq" Version="9.6.0.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Aytaam.Core\Aytaam.Core.csproj" />
+	  <ProjectReference Include="..\Aytaam.Data\Aytaam.Data.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Middlewares\" />
+	</ItemGroup>
+
+</Project>

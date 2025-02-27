@@ -1,0 +1,146 @@
+﻿@using Aytaam.Core.Dtos;
+@model Counters
+
+<div class="row gy-5 g-xl-10">
+    <div class="col-sm-6 col-xl-2 mb-xl-10">
+        <div class="card h-lg-100">
+            <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                <div class="m-0">
+                    <span class="svg-icon svg-icon-2hx svg-icon-gray-600">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="darkgray" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.0173 9H15.3945C14.2833 9 13.263 9.61425 12.7431 10.5963L12.154 11.7091C12.0645 11.8781 12.1072 12.0868 12.2559 12.2071L12.6402 12.5183C13.2631 13.0225 13.7556 13.6691 14.0764 14.4035L14.2321 14.7601C14.2957 14.9058 14.4396 15 14.5987 15H18.6747C19.7297 15 20.4057 13.8774 19.912 12.945L18.6686 10.5963C18.1487 9.61425 17.1285 9 16.0173 9Z" fill="currentColor" />
+                            <rect opacity="0.3" x="14" y="4" width="4" height="4" rx="2" fill="currentColor" />
+                            <path d="M4.65486 14.8559C5.40389 13.1224 7.11161 12 9 12C10.8884 12 12.5961 13.1224 13.3451 14.8559L14.793 18.2067C15.3636 19.5271 14.3955 21 12.9571 21H5.04292C3.60453 21 2.63644 19.5271 3.20698 18.2067L4.65486 14.8559Z" fill="currentColor" />
+                            <rect opacity="0.3" x="6" y="5" width="6" height="6" rx="3" fill="currentColor" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="d-flex flex-column my-7">
+                    <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">@Model.Accounts</span>
+                    <div class="m-0">
+                        <span class="fw-semibold fs-6 text-gray-400">مستخدم</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-2 mb-xl-10">
+        <div class="card h-lg-100">
+            <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                <div class="m-0">
+                    <span class="svg-icon svg-icon-2hx svg-icon-gray-600">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="darkgray" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3" d="M3 13H10C10.6 13 11 13.4 11 14V21C11 21.6 10.6 22 10 22H3C2.4 22 2 21.6 2 21V14C2 13.4 2.4 13 3 13Z" fill="currentColor" />
+                            <path d="M7 16H6C5.4 16 5 15.6 5 15V13H8V15C8 15.6 7.6 16 7 16Z" fill="currentColor" />
+                            <path opacity="0.3" d="M14 13H21C21.6 13 22 13.4 22 14V21C22 21.6 21.6 22 21 22H14C13.4 22 13 21.6 13 21V14C13 13.4 13.4 13 14 13Z" fill="currentColor" />
+                            <path d="M18 16H17C16.4 16 16 15.6 16 15V13H19V15C19 15.6 18.6 16 18 16Z" fill="currentColor" />
+                            <path opacity="0.3" d="M3 2H10C10.6 2 11 2.4 11 3V10C11 10.6 10.6 11 10 11H3C2.4 11 2 10.6 2 10V3C2 2.4 2.4 2 3 2Z" fill="currentColor" />
+                            <path d="M7 5H6C5.4 5 5 4.6 5 4V2H8V4C8 4.6 7.6 5 7 5Z" fill="currentColor" />
+                            <path opacity="0.3" d="M14 2H21C21.6 2 22 2.4 22 3V10C22 10.6 21.6 11 21 11H14C13.4 11 13 10.6 13 10V3C13 2.4 13.4 2 14 2Z" fill="currentColor" />
+                            <path d="M18 5H17C16.4 5 16 4.6 16 4V2H19V4C19 4.6 18.6 5 18 5Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="d-flex flex-column my-7">
+                    <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">@Model.Boards</span>
+                    <div class="m-0">
+                        <span class="fw-semibold fs-6 text-gray-400">إعلانات المجالس </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-2 mb-xl-10">
+        <div class="card h-lg-100">
+            <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                <div class="m-0">
+                    <span class="svg-icon svg-icon-2hx svg-icon-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 495 511.87">
+                            <path d="M32.87 28.24h123.11l7.6-26.95h30.66l-7.05 26.95h45.74V2.61h30.3v25.63h45.23L297.68 0h31.85l10.98 28.24h121.62c9 0 17.2 3.69 23.18 9.65l.06.06c5.94 5.97 9.63 14.17 9.63 23.16v254.4c0 9.01-3.7 17.21-9.65 23.19l-.07.06c-5.97 5.94-14.17 9.63-23.15 9.63h-43.32l44.9 163.48H432.6l-20.15-73.06H263.23v69.04h-30.3v-69.04H81.14l-20.21 72.67H29.76l45.21-163.09h-42.1c-9 0-17.21-3.7-23.18-9.65l-.07-.07C3.68 332.7 0 324.5 0 315.51V61.11c0-9 3.69-17.21 9.65-23.18l.07-.07c5.97-5.94 14.16-9.62 23.15-9.62zm371.22 380.27-16.58-60.12H263.23v60.12h140.86zm-171.16 0v-60.12H106.28l-16.72 60.12h143.37zM32.87 39.25h429.26c12.02 0 21.85 9.84 21.85 21.86v254.4c0 12.03-9.83 21.86-21.85 21.86H32.87c-12.02 0-21.85-9.83-21.85-21.86V61.11c0-12.02 9.83-21.86 21.85-21.86z" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="d-flex flex-column my-7">
+                    <div class="m-0">
+                        <span class="fw-semibold fs-6 text-gray-400">مجالس تبث الأن</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-2 mb-xl-10">
+        <div class="card h-lg-100">
+            <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                <div class="m-0">
+                    <span class="svg-icon svg-icon-2hx svg-icon-gray-600">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <g id="" stroke-width="0"></g>
+                            <g id="" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="">
+                                <path opacity="0.5" d="M4.72718 2.73332C5.03258 2.42535 5.46135 2.22456 6.27103 2.11478C7.10452 2.00177 8.2092 2 9.7931 2H14.2069C15.7908 2 16.8955 2.00177 17.729 2.11478C18.5387 2.22456 18.9674 2.42535 19.2728 2.73332C19.5782 3.0413 19.7773 3.47368 19.8862 4.2902C19.9982 5.13073 20 6.24474 20 7.84202L20 18H7.42598C6.34236 18 5.96352 18.0057 5.67321 18.0681C5.15982 18.1785 4.71351 18.4151 4.38811 18.7347C4.27837 18.8425 4.22351 18.8964 4.09696 19.2397C4.02435 19.4367 4 19.5687 4 19.7003V7.84202C4 6.24474 4.00176 5.13073 4.11382 4.2902C4.22268 3.47368 4.42179 3.0413 4.72718 2.73332Z"></path>
+                                <path d="M20 18H7.42598C6.34236 18 5.96352 18.0057 5.67321 18.0681C5.15982 18.1785 4.71351 18.4151 4.38811 18.7347C4.27837 18.8425 4.22351 18.8964 4.09696 19.2397C3.97041 19.5831 3.99045 19.7288 4.03053 20.02C4.03761 20.0714 4.04522 20.1216 4.05343 20.1706C4.16271 20.8228 4.36259 21.1682 4.66916 21.4142C4.97573 21.6602 5.40616 21.8206 6.21896 21.9083C7.05566 21.9986 8.1646 22 9.75461 22H14.1854C15.7754 22 16.8844 21.9986 17.7211 21.9083C18.5339 21.8206 18.9643 21.6602 19.2709 21.4142C19.4705 21.254 19.6249 21.0517 19.7385 20.75H8C7.58579 20.75 7.25 20.4142 7.25 20C7.25 19.5858 7.58579 19.25 8 19.25H19.9754C19.9926 18.8868 19.9982 18.4741 20 18Z"></path> <path d="M7.25 7C7.25 6.58579 7.58579 6.25 8 6.25H16C16.4142 6.25 16.75 6.58579 16.75 7C16.75 7.41421 16.4142 7.75 16 7.75H8C7.58579 7.75 7.25 7.41421 7.25 7Z"></path>
+                                <path d="M8 9.75C7.58579 9.75 7.25 10.0858 7.25 10.5C7.25 10.9142 7.58579 11.25 8 11.25H13C13.4142 11.25 13.75 10.9142 13.75 10.5C13.75 10.0858 13.4142 9.75 13 9.75H8Z"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+                <div class="d-flex flex-column my-7">
+                    <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">@Model.Sponsorships</span>
+                    <div class="m-0">
+                        <span class="fw-semibold fs-6 text-gray-400">كتب</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+        <div class="card h-lg-100">
+            <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                <div class="m-0">
+                    <span class="svg-icon svg-icon-2hx svg-icon-gray-600">
+                        <svg viewBox="0 0 64 64" fill="darkgray" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--emojione-monotone" preserveAspectRatio="xMidYMid meet">
+                            <g stroke-width="0"></g>
+                            <g stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g>
+                                <path d="M18.723 47.868c-3.265-1.06-6.593.309-7.438 3.056c-.846 2.748 1.117 5.836 4.382 6.896s6.594-.31 7.439-3.058c.842-2.747-1.119-5.834-4.383-6.894"></path>
+                                <path d="M6.681 56.822c-1.112.873-1.23 2.631-.266 3.927c.963 1.298 2.644 1.641 3.755.769c1.11-.873 1.23-2.632.268-3.928c-.963-1.298-2.646-1.641-3.757-.768"></path>
+                                <path d="M62 22.655a8.24 8.24 0 0 0-3.204-6.557c.015-.191.023-.384.023-.579c0-4.227-3.332-7.653-7.443-7.653c-.26 0-.516.014-.768.04c-1.562-2.727-4.447-4.558-7.748-4.558c-1.95 0-3.754.638-5.227 1.722C35.773 3.173 33.212 2 30.383 2c-4.606 0-8.507 3.111-9.821 7.402a9.355 9.355 0 0 0-5.44-1.743c-5.286 0-9.569 4.405-9.569 9.838c0 1.604.374 3.117 1.035 4.454C3.811 23.975 2 27.303 2 31.068c0 6.167 4.861 11.167 10.86 11.167c2.206 0 4.257-.677 5.971-1.838c.927 4.725 4.986 8.285 9.856 8.285c3.624 0 6.799-1.972 8.567-4.927a6.634 6.634 0 0 0 4.758 2.019c3.526 0 6.419-2.784 6.718-6.33a7.57 7.57 0 0 0 2.646.475c4.305 0 7.795-3.588 7.795-8.013c0-.928-.155-1.819-.438-2.648A8.235 8.235 0 0 0 62 22.655"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+                <div class="d-flex flex-column my-7">
+                    <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">@Model.Thoughts</span>
+                    <div class="m-0">
+                        <span class="fw-semibold fs-6 text-gray-400">خواطر</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+        <div class="card h-lg-100">
+            <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                <div class="m-0">
+                    <span class="svg-icon svg-icon-2hx svg-icon-gray-600">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="darkgray" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3" d="M18 22C19.7 22 21 20.7 21 19C21 18.5 20.9 18.1 20.7 17.7L15.3 6.30005C15.1 5.90005 15 5.5 15 5C15 3.3 16.3 2 18 2H6C4.3 2 3 3.3 3 5C3 5.5 3.1 5.90005 3.3 6.30005L8.7 17.7C8.9 18.1 9 18.5 9 19C9 20.7 7.7 22 6 22H18Z" fill="currentColor" />
+                            <path d="M18 2C19.7 2 21 3.3 21 5H9C9 3.3 7.7 2 6 2H18Z" fill="currentColor" />
+                            <path d="M9 19C9 20.7 7.7 22 6 22C4.3 22 3 20.7 3 19H9Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="d-flex flex-column my-7">
+                    <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">@Model.Posts</span>
+                    <div class="m-0">
+                        <span class="fw-semibold fs-6 text-gray-400">منشورات</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

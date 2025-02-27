@@ -1,0 +1,45 @@
+﻿@using Aytaam.Core.ViewModels;
+@model AppToolBarViewModel
+<div class="app-toolbar py-3 py-lg-6" id="kt_app_toolbar">
+    <!--begin::Toolbar container-->
+    <div class="app-container container-fluid d-flex flex-stack" id="kt_app_toolbar_container">
+        <!--begin::Page title-->
+        <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+
+            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                @Model.Title
+            </h1>
+
+            <!--begin::Breadcrumb-->
+            <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                <!--begin::Item-->
+                @if (Model.BreadcrumbLinks != null)
+                    @for (int i = 0; i < Model.BreadcrumbLinks.Count; i++)
+                    {
+                        var item = Model.BreadcrumbLinks[i];
+                        if (item.Url != null)
+                        {
+                            <li class="breadcrumb-item text-muted">
+                                <a class="text-muted text-hover-success" href="@item.Url">
+                                    @item.Title
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="breadcrumb-item text-muted">@item.Title</li>
+
+                        }
+                        if (i != Model.BreadcrumbLinks.Count - 1)
+                        {
+                            <li class="breadcrumb-item">
+                                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                            </li>
+                        }
+                    }
+            </ul>
+            <!--end::Breadcrumb-->
+        </div>
+    </div>
+    <!--end::Toolbar container-->
+</div>

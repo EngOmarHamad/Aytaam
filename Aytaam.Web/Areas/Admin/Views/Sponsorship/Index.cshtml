@@ -1,0 +1,94 @@
+﻿@using Aytaam.Core.Dtos.Sponsorships;
+@using Aytaam.Core.ViewModels.Sponsorships;
+@model SponsorshipsIndexViewModel
+@{
+    ViewData["Title"] = "الكفالات";
+    AppToolBarViewModel appToolBarViewModel = new()
+            {
+                Title = ViewData["title"]?.ToString(),
+                BreadcrumbLinks = new List<Link>()
+                {
+                    new Link(){ Url="",Title="الصفحة الرئيسية"},
+                    new Link(){ Url="",Title="الكفالات"}
+                }
+            };
+}
+@section AppToolBar {
+    <partial name="Partials/Layout/_AppToolBar" model="appToolBarViewModel" />
+}
+@section Styles {
+    <link href="~/assets/plugins/custom/datatables/datatables.bundle.rtl.css" rel="stylesheet" />
+}
+@section Scripts {
+    <script src="~/assets/plugins/custom/datatables/datatables.bundle.js" asp-append-version="true"></script>
+    <script src="~/assets/js/custom/sponsorship/table.js" asp-append-version="true"></script>
+    <script src="~/assets/js/custom/sponsorship/addSponsorship.js" asp-append-version="true"></script>
+}
+<div class="modal fade" id="kt_modal_baseModel" tabindex="-1" aria-hidden="true"></div>
+<div class="col CollapsedCard card my-3">
+    <partial name="Partials/General/_cardToolbar" />
+    <div class="card-collapese-body">
+        <div class="card-header row align-items-center border-0 pt-6">
+            <div class="card-title mx-0 my-1 d-block  col-md-9">
+                <div class="row">
+                    <div class="d-flex col-md-6 align-items-center position-relative my-1">
+                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <input data-kt-sponsorship-table-filter="search" class="form-control form-control-solid w-100 ps-14" placeholder="بحث" />
+                    </div>
+                    <div class="col-md-6 my-1">
+                        <select class="form-select form-select-solid fw-bold" id="SponsorshipTypeFilter" asp-items="Model.SponsorshipTypes" data-kt-select2="true" data-placeholder="اختر نوع الكفالة " data-allow-clear="true" data-kt-sponsorship-table-filter="two-step" data-hide-search="true">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 my-1">
+                        <select class="form-select form-select-solid fw-bold" id="OrphanNamesFilter" asp-items="Model.OrphanNames" data-kt-select2="true">
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="card-toolbar  justify-content-end col-md-3 mx-0">
+
+                <div class="d-flex justify-content-end" data-kt-sponsorship-table-toolbar="base">
+
+                    <button type="button" class="btn btn-success" onclick="initToggleAddOrUpdateSponsorshipModal(null)">
+
+                        <span class="svg-icon svg-icon-2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor" />
+                                <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor" />
+                            </svg>
+                        </span>
+                        إضافة كفالة
+                    </button>
+                    <!--end::Add user-->
+                </div>
+
+
+                <div class="d-flex justify-content-end align-items-center d-none" data-kt-sponsorship-table-toolbar="selected">
+                    <div class="fw-bold text-dark me-5">
+                        <span class="me-2" data-kt-sponsorship-table-select="selected_count"></span>محدد
+                    </div>
+                    <button type="button" class="btn btn-danger" data-kt-sponsorship-table-select="delete_selected">
+                        حذف المحدد
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-body py-4">
+            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_sponsorships">
+                <tbody class="text-gray-600 fw-semibold">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

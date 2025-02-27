@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "tinymce@6.6.2",
+      "destination": "wwwroot/assets/js/tinymce/"
+    },
+    {
+      "library": "intl-tel-input@18.2.1",
+      "destination": "wwwroot/assets/plugins/custom/intl-tel-input/"
+    },
+    {
+      "library": "clipboard.js@2.0.11",
+      "destination": "wwwroot/assets/plugins/custom/clipboard.js/"
+    },
+    {
+      "library": "microsoft-signalr@7.0.11",
+      "destination": "wwwroot/lib/microsoft-signalr/"
+    }
+  ]
+}

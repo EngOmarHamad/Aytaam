@@ -1,0 +1,16 @@
+﻿global using AutoMapper;
+global using Aytaam.Core.Dtos.General.Queries;
+global using Aytaam.Core.Dtos.Sponsorships;
+global using Aytaam.Core.Enums;
+global using Aytaam.Core.Helpers;
+global using Aytaam.Core.ViewModels;
+global using Aytaam.Data;
+global using Aytaam.Data.DbEntities;
+global using Aytaam.Infrastructure.Services.Files;
+global using Aytaam.Infrastructure.Services.Sponsorships;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Data;

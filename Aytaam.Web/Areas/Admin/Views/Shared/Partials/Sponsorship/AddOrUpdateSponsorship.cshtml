@@ -1,0 +1,73 @@
+﻿@using Aytaam.Core.Dtos.Sponsorships
+@model InputSponsorshipDto
+
+<!--begin::Modal dialog-->
+
+<div class="modal-dialog modal-dialog-centered mw-950px">
+
+    <div class="modal-content">
+        <div class="modal-header" id="kt_modal_addOrUpdate_sponsorship_header">
+            <h2 class="fw-bold">@((Model.Id == null || Model.Id == "") ? "إضافة كفالة" : "تعديل كفالة")</h2>
+            <div class="btn btn-icon btn-sm btn-active-icon-success" data-kt-sponsorships-modal-action="close">
+                <span class="svg-icon svg-icon-1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="modal-body scroll-y  my-7">
+            <form id="kt_modal_addOrUpdate_sponsorship_form" class="form" enctype="multipart/form-data">
+                <div class="scroll-y me-n7 px-7" id="kt_modal_addOrUpdate_sponsorship_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_addOrUpdate_sponsorship_header" data-kt-scroll-wrappers="#kt_modal_addOrUpdate_sponsorship_scroll" data-kt-scroll-offset="300px">
+                    <input asp-for="Id" id="Id" hidden />
+                    <div class="fv-row mb-7">
+                        <label class="required fw-semibold fs-6 mb-2" asp-for="SponsorName"></label>
+                        <input asp-for="SponsorName" id="SponsorName" class="form-control form-control-sol mb-3 mb-lg-0" placeholder="اسم المتكفل" />
+                    </div>
+                    <div class="fv-row mb-7">
+                        <label class="required fw-semibold fs-6 mb-2" asp-for="Amount"></label>
+                        <input asp-for="Amount" id="Amount" class="form-control form-control-sol mb-3 mb-lg-0" placeholder="المبلغ" />
+                    </div><div class="fv-row mb-7">
+                        <label class="required fw-semibold fs-6 mb-2" asp-for="StartDate"></label>
+                        <input asp-for="StartDate" id="StartDate" class="form-control form-control-sol mb-3 mb-lg-0" placeholder="تاريخ بدايتها" />
+                    </div><div class="fv-row mb-7">
+                        <label class="required fw-semibold fs-6 mb-2" asp-for="EndDate"></label>
+                        <input asp-for="EndDate" id="EndDate" class="form-control form-control-sol mb-3 mb-lg-0" placeholder="تاريخ نهايتها" />
+                    </div>
+                    <div class="fv-row mb-7">
+                        <label class="required fw-semibold fs-6 mb-2" asp-for="SponsorshipType"></label>
+                        <div class="d-flex align-items-center gap-2">
+                            <select class="form-select form-select-solid fw-bold w-100" asp-for="SponsorshipType" id="SponsorshipType" asp-items="Model.SponsorshipTypes" data-kt-select2="true" data-placeholder="اختر نوع الجساب " data-allow-clear="true" data-hide-search="true"><option></option></select>
+                        </div>
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <label class="fw-semibold fs-6 mb-2" asp-for="Notes"></label>
+                        <textarea asp-for="Notes" id="Notes" rows="4" class="form-control form-control-sol mb-3 mb-lg-0" placeholder="ملاحظات"></textarea>
+                    </div>
+
+                </div>
+
+
+                <div class="text-center pt-15">
+                    <button type="reset" class="btn btn-light me-3" data-kt-sponsorships-modal-action="cancel">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="btn btn-success" data-kt-sponsorships-modal-action="submit">
+                        <span class="indicator-label">إرسال</span>
+                        <span class="indicator-progress">
+                            رجاءاً أنتظر<span class="spinner-border spinner-border-sm align-mdle ms-2"></span>
+                        </span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

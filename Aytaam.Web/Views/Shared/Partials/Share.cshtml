@@ -1,0 +1,199 @@
+﻿@model ShareViewModel
+@{
+    string currentUrl = Model.Link;
+    string? enc = System.Net.WebUtility.UrlEncode(currentUrl);
+    string? text = System.Net.WebUtility.UrlEncode(Model.Title);
+}
+<style>
+    .svg-icon {
+        transition: .5s;
+    }
+
+    .mailto-icon:hover svg,
+    .plusgoogle-icon:hover svg,
+    .twitter-icon:hover svg,
+    .faceSponsorships-icon:hover svg,
+    .telegram-icon:hover svg {
+        fill: white !important;
+    }
+
+
+    .telegram-icon {
+        border-color: #31a6d8 !important;
+    }
+
+        .telegram-icon:hover {
+            background-color: #31a6d8 !important;
+        }
+
+        .telegram-icon svg {
+            fill: #31a6d8 !important;
+        }
+
+    .faceSponsorship-icon {
+        border-color: #1298f0 !important;
+    }
+
+    .faceSponsorships-icon:hover {
+        background-color: #1298f0 !important;
+    }
+
+    .faceSponsorships-icon svg {
+        fill: #1298f0 !important;
+    }
+
+    .twitter-icon {
+        border-color: #4da6e9 !important;
+    }
+
+        .twitter-icon:hover {
+            background-color: #4da6e9 !important;
+        }
+
+        .twitter-icon svg {
+            fill: #4da6e9 !important;
+        }
+
+    .plusgoogle-icon {
+        border-color: #d54c3f !important;
+    }
+
+        .plusgoogle-icon:hover {
+            background-color: #d54c3f !important;
+        }
+
+        .plusgoogle-icon svg {
+            fill: #d54c3f !important;
+        }
+
+    .mailto-icon {
+        border-color: #0871c5 !important;
+    }
+
+        .mailto-icon:hover {
+            background-color: #0871c5 !important;
+        }
+
+        .mailto-icon svg {
+            fill: #0871c5 !important;
+        }
+
+</style>
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">شارك </h3>
+            <div class="btn btn-icon btn-sm btn-active-light-success ms-2" data-bs-dismiss="modal" aria-label="Close">
+                <span class="svg-icon svg-icon-1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+        <div class="modal-body">
+            <p>
+                شارك هذا الرابط عبر
+            </p>
+            <div class="d-flex justify-content-between p-3">
+                <a href="https://t.me/share/url?url=@enc&text=@text" target="_blank" rel="noopener noreferrer nofollow">
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx telegram-icon border-black rounded-circle border w-60px h-60px d-flex align-items-center justify-content-center">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <g stroke-width="0"></g>
+                            <g stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g>
+                                <path d="M41.4193 7.30899C41.4193 7.30899 45.3046 5.79399 44.9808 9.47328C44.8729 10.9883 43.9016 16.2908 43.1461 22.0262L40.5559 39.0159C40.5559 39.0159 40.3401 41.5048 38.3974 41.9377C36.4547 42.3705 33.5408 40.4227 33.0011 39.9898C32.5694 39.6652 24.9068 34.7955 22.2086 32.4148C21.4531 31.7655 20.5897 30.4669 22.3165 28.9519L33.6487 18.1305C34.9438 16.8319 36.2389 13.8019 30.8426 17.4812L15.7331 27.7616C15.7331 27.7616 14.0063 28.8437 10.7686 27.8698L3.75342 25.7055C3.75342 25.7055 1.16321 24.0823 5.58815 22.459C16.3807 17.3729 29.6555 12.1786 41.4193 7.30899Z">
+                                </path>
+                            </g>
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://www.faceSponsorship.com/sharer/sharer.php?u=@enc" target="_blank" rel="noopener noreferrer nofollow">
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx faceSponsorship-icon border-black rounded-circle border w-60px h-60px d-flex align-items-center justify-content-center">
+                        <svg viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                            <g stroke-width="0"></g>
+                            <g stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g>
+                                <path d="M1168.737 487.897c44.672-41.401 113.824-36.889 118.9-36.663l289.354-.113 6.317-417.504L1539.65 22.9C1511.675 16.02 1426.053 0 1237.324 0 901.268 0 675.425 235.206 675.425 585.137v93.97H337v451.234h338.425V1920h451.234v-789.66h356.7l62.045-451.233H1126.66v-69.152c0-54.937 14.214-96.112 42.078-122.058">
+
+                                </path>
+                            </g>
+                        </svg>
+                    </span>
+
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=@enc&text=@text" target="_blank" rel="noopener noreferrer nofollow">
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx twitter-icon border-black rounded-circle border w-60px h-60px d-flex align-items-center justify-content-center">
+                        <svg fill="#000000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                        <g stroke-width="0"></g>
+                        <g stroke-linecap="round" stroke-linejoin="round"></g>
+
+                        <g> 
+                        <g>
+                        <path style="display: inline;" d="M459.186,151.787c0.203,4.501,0.305,9.023,0.305,13.565 c0,138.542-105.461,298.285-298.274,298.285c-59.209,0-114.322-17.357-160.716-47.104c8.212,0.973,16.546,1.47,25.012,1.47 c49.121,0,94.318-16.759,130.209-44.884c-45.887-0.841-84.596-31.154-97.938-72.804c6.408,1.227,12.968,1.886,19.73,1.886 c9.55,0,18.816-1.287,27.617-3.68c-47.955-9.633-84.1-52.001-84.1-102.795c0-0.446,0-0.882,0.011-1.318 c14.133,7.847,30.294,12.562,47.488,13.109c-28.134-18.796-46.637-50.885-46.637-87.262c0-19.212,5.16-37.218,14.193-52.7 c51.707,63.426,128.941,105.156,216.072,109.536c-1.784-7.675-2.718-15.674-2.718-23.896c0-57.891,46.941-104.832,104.832-104.832 c30.173,0,57.404,12.734,76.525,33.102c23.887-4.694,46.313-13.423,66.569-25.438c-7.827,24.485-24.434,45.025-46.089,58.002 c21.209-2.535,41.426-8.171,60.222-16.505C497.448,118.542,479.666,137.004,459.186,151.787z"> </path> </g> </g></svg>
+                    </span>
+                </a>
+                <a href="https://plus.google.com/share?url=@enc" target="_blank" rel="noopener noreferrer nofollow">
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx plusgoogle-icon border-black rounded-circle border w-60px h-60px d-flex align-items-center justify-content-center">
+                        <svg viewBox="0 -0.5 25 25" xmlns="http://www.w3.org/2000/svg">
+                            <g stroke-width="0"></g>
+                            <g stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g>
+                                <path d="M9.78353 7.74971C10.1976 7.73814 10.5239 7.39311 10.5123 6.97906C10.5007 6.565 10.1557 6.23873 9.74164 6.25029L9.78353 7.74971ZM5.50158 11.5L6.25132 11.52C6.25167 11.5067 6.25167 11.4933 6.25132 11.48L5.50158 11.5ZM9.76258 16L9.74164 16.7497C9.7556 16.7501 9.76957 16.7501 9.78353 16.7497L9.76258 16ZM14.0236 11.5L14.7733 11.48C14.7625 11.0737 14.43 10.75 14.0236 10.75V11.5ZM9.76258 10.75C9.34837 10.75 9.01258 11.0858 9.01258 11.5C9.01258 11.9142 9.34837 12.25 9.76258 12.25V10.75ZM19.3276 9.679C19.7418 9.679 20.0776 9.34321 20.0776 8.929C20.0776 8.51479 19.7418 8.179 19.3276 8.179V9.679ZM17.5016 8.179C17.0874 8.179 16.7516 8.51479 16.7516 8.929C16.7516 9.34321 17.0874 9.679 17.5016 9.679V8.179ZM17.5016 9.679C17.9158 9.679 18.2516 9.34321 18.2516 8.929C18.2516 8.51479 17.9158 8.179 17.5016 8.179V9.679ZM15.6756 8.179C15.2614 8.179 14.9256 8.51479 14.9256 8.929C14.9256 9.34321 15.2614 9.679 15.6756 9.679V8.179ZM16.7516 8.929C16.7516 9.34321 17.0874 9.679 17.5016 9.679C17.9158 9.679 18.2516 9.34321 18.2516 8.929H16.7516ZM18.2516 7C18.2516 6.58579 17.9158 6.25 17.5016 6.25C17.0874 6.25 16.7516 6.58579 16.7516 7H18.2516ZM18.2516 8.929C18.2516 8.51479 17.9158 8.179 17.5016 8.179C17.0874 8.179 16.7516 8.51479 16.7516 8.929H18.2516ZM16.7516 10.857C16.7516 11.2712 17.0874 11.607 17.5016 11.607C17.9158 11.607 18.2516 11.2712 18.2516 10.857H16.7516ZM9.74164 6.25029C6.90939 6.32941 4.67644 8.68761 4.75185 11.52L6.25132 11.48C6.19794 9.47505 7.77861 7.80571 9.78353 7.74971L9.74164 6.25029ZM4.75185 11.48C4.67644 14.3124 6.90939 16.6706 9.74164 16.7497L9.78353 15.2503C7.77861 15.1943 6.19794 13.5249 6.25132 11.52L4.75185 11.48ZM9.78353 16.7497C12.6158 16.6706 14.8487 14.3124 14.7733 11.48L13.2738 11.52C13.3272 13.5249 11.7466 15.1943 9.74164 15.2503L9.78353 16.7497ZM14.0236 10.75H9.76258V12.25H14.0236V10.75ZM19.3276 8.179H17.5016V9.679H19.3276V8.179ZM17.5016 8.179H15.6756V9.679H17.5016V8.179ZM18.2516 8.929V7H16.7516V8.929H18.2516ZM16.7516 8.929V10.857H18.2516V8.929H16.7516Z"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </a>
+                @{
+                    var s = "asdsad";
+                }
+                <a href='mailto:?subject=@s.Replace(" ", "%20")&amp;body=@enc' target="_blank" rel="noopener noreferrer nofollow">
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx mailto-icon border-black rounded-circle border w-60px h-60px d-flex align-items-center justify-content-center">
+                        <svg fill="#000000" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g stroke-width="0"></g><g stroke-linecap="round" stroke-linejoin="round"></g><g><path d="m 13,4.69375 0,5.239 c 0,0.115 -0.04,0.212 -0.119,0.288 -0.079,0.077 -0.176,0.115 -0.29,0.115 l -4.2735,0 0,-3.4795 0.8,0.6145 c 0.051,0.0425 0.1145,0.063 0.1895,0.063 0.074,0 0.1385,-0.0205 0.1945,-0.0635 L 13,4.69375 Z m -4.6825,-1.0105 4.2735,0 c 0.1055,0 0.1965,0.0315 0.2715,0.096 0.075,0.064 0.117,0.15 0.124,0.255 l -3.6845,2.938 -0.9845,-0.7745 0,-2.5145 z m -0.6155,-2.251 0,11.1355 -6.702,-1.158 0,-8.7875 6.703,-1.19 -0.001,0 z m -2.0245,5.59 c -0.01,-0.5665 -0.1565,-1.036 -0.4395,-1.407 -0.2775,-0.37 -0.6375,-0.5655 -1.0655,-0.582 -0.412,0.0165 -0.7645,0.2115 -1.05,0.582 -0.285,0.371 -0.4275,0.841 -0.435,1.407 0.0075,0.5585 0.1575,1.0235 0.4425,1.3955 0.2855,0.37 0.637,0.5665 1.0505,0.588 0.4275,-0.0175 0.787,-0.212 1.0725,-0.585 0.285,-0.374 0.435,-0.84 0.4425,-1.3985 l -0.018,0 z m -1.56,-1.241 c 0.2155,0.01 0.397,0.128 0.5415,0.3585 0.1425,0.2305 0.2175,0.5225 0.2175,0.876 0,0.3605 -0.0745,0.6535 -0.2175,0.8855 -0.1505,0.232 -0.33,0.352 -0.548,0.352 -0.218,0 -0.3975,-0.113 -0.5475,-0.345 -0.15,-0.232 -0.2175,-0.525 -0.2175,-0.877 0,-0.3525 0.0675,-0.6455 0.2175,-0.87 0.142,-0.225 0.323,-0.345 0.5405,-0.3605 l 0.0135,-0.0195 z"></path></g></svg>
+                    </span>
+                </a>
+
+            </div>
+            <p>
+                Or copy link
+
+            </p>
+            <div class="form-group border border-success p-3 d-flex align-items-center rounded">
+                <span class="svg-icon  svg-icon-muted svg-icon-2x">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M4.425 20.525C2.525 18.625 2.525 15.525 4.425 13.525L14.825 3.125C16.325 1.625 18.825 1.625 20.425 3.125C20.825 3.525 20.825 4.12502 20.425 4.52502C20.025 4.92502 19.425 4.92502 19.025 4.52502C18.225 3.72502 17.025 3.72502 16.225 4.52502L5.82499 14.925C4.62499 16.125 4.62499 17.925 5.82499 19.125C7.02499 20.325 8.82501 20.325 10.025 19.125L18.425 10.725C18.825 10.325 19.425 10.325 19.825 10.725C20.225 11.125 20.225 11.725 19.825 12.125L11.425 20.525C9.525 22.425 6.425 22.425 4.425 20.525Z" fill="currentColor" />
+                        <path d="M9.32499 15.625C8.12499 14.425 8.12499 12.625 9.32499 11.425L14.225 6.52498C14.625 6.12498 15.225 6.12498 15.625 6.52498C16.025 6.92498 16.025 7.525 15.625 7.925L10.725 12.8249C10.325 13.2249 10.325 13.8249 10.725 14.2249C11.125 14.6249 11.725 14.6249 12.125 14.2249L19.125 7.22493C19.525 6.82493 19.725 6.425 19.725 5.925C19.725 5.325 19.525 4.825 19.125 4.425C18.725 4.025 18.725 3.42498 19.125 3.02498C19.525 2.62498 20.125 2.62498 20.525 3.02498C21.325 3.82498 21.725 4.825 21.725 5.925C21.725 6.925 21.325 7.82498 20.525 8.52498L13.525 15.525C12.325 16.725 10.525 16.725 9.32499 15.625Z" fill="currentColor" />
+                    </svg>
+                </span>
+                <input type="text" class="form-control border-0  " id="link" readonly value="@currentUrl">
+                <button class="btn btn-success    w-200px" data-clipboard-target="#link">نسخ</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var target = document.getElementById('link');
+    var button = target.nextElementSibling;
+    button.addEventListener('click', function () {
+        var copyText = document.getElementById("link");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        const currentLabel = button.innerHTML;
+
+        // Exit label update when already in progress
+        if (button.innerHTML === 'تم نسخها!') {
+            return;
+        }
+
+        // Update button label
+        button.innerHTML = 'تم نسخها!';
+
+        // Revert button label after 3 seconds
+        setTimeout(function () {
+            button.innerHTML = currentLabel;
+        }, 3000)
+    })
+</script>

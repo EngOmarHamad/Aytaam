@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.1.66" />
+		<PackageReference Include="Humanizer" Version="2.14.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.DynamicLinq" Version="9.6.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.SqlServer.SqlManagementObjects" Version="172.61.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Aytaam.Infrastructure\Aytaam.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Areas\Identity\Views\Accounts\ForgotPassword.cshtml" />
+		<None Include="Areas\Identity\Views\Accounts\Index.cshtml" />
+		<None Include="Areas\Identity\Views\Accounts\Lockout.cshtml" />
+		<None Include="Areas\Identity\Views\Accounts\Login.cshtml" />
+		<None Include="Areas\Identity\Views\Accounts\Logout.cshtml" />
+		<None Include="Areas\Identity\Views\Shared\_Identity.cshtml" />
+		<None Include="Areas\Identity\_ValidationScriptsPartial.cshtml" />
+		<None Include="Areas\Identity\_ViewImports.cshtml" />
+		<None Include="Areas\Identity\_ViewStart.cshtml" />
+		<None Include="Views\Error\Lockout.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="TempEmails\" />
+	  <Folder Include="Views\Shared\Partials\Home\" />
+	</ItemGroup>
+
+</Project>

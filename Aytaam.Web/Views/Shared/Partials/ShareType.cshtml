@@ -1,0 +1,67 @@
+﻿@model int
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">شارك </h3>
+            <div class="btn btn-icon btn-sm btn-active-light-success ms-2" data-bs-dismiss="modal" aria-label="Close">
+                <span class="svg-icon svg-icon-1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+        <div class="modal-body">
+            <select class="form-select form-select-sol fw-bold w-100  mb-5" id="ShareType" data-kt-select2="true" data-placeholder="اختر" data-allow-clear="true" data-hide-search="ture">
+                <option></option>
+                <option value="Link">رابط البث</option>
+                <option value="Photo">صورة</option>
+                <option value="Details">تفاصيل</option>
+            </select>
+            <div class="ShareBody" id="ShareBody">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        var element = document.querySelector('#ShareType')
+        var options = {
+            dir: document.body.getAttribute("direction"),
+            minimumResultsForSearch: Infinity
+        };
+        $(element).select2(options);
+        element.setAttribute("data-kt-initialized", "1");
+    })
+    $('#ShareType').on('select2:select', function (e) {
+        console.log({ id: @Model, type: e.target.value })
+        var formdata = new FormData();
+        formdata.append("id", @Model)
+        formdata.append("type", e.target.value)
+        // data: { id: @Model, type: e.target.value },
+        e.preventDefault();
+        $.ajax({
+            url: '/BoardAds/RenderShareBoardAds',
+            method: "POST",
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (layout) {
+
+                $("#ShareBody").html(layout)
+
+
+            },
+            error: function (xhr, status, error) {
+                console.log(error)
+                console.log(xhr)
+                console.log(status)
+                toastr.error("آسف، يبدو أن هناك بعض الأخطاء التي تم اكتشافها، من فضلك حاول مرة أخرى.");
+
+            }
+        });
+    });
+
+</script>

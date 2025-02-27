@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+
+<div class="d-flex flex-column flex-center flex-column-fluid">
+    <!--begin::Content-->
+    <div class="d-flex flex-column flex-center text-center p-10">
+        <!--begin::Wrapper-->
+        <div class="card card-flush w-lg-650px py-5">
+            <div class="card-body py-15 py-lg-20">
+                
+                <h1 class="fw-bolder fs-2hx text-gray-900 mb-4">عذرا!</h1>
+                
+                <!--begin::Text-->
+                <!--end::Text-->
+                <div class="fw-semibold fs-6 text-dark mb-7">
+                    يَجِبُ عَلَيْك تَسْجِيل الدُّخُول أَوَّلًا . .
+                </div>
+                <!--begin::Illustration-->
+                <div class="mb-3">
+                    <h1 class="text-dark fs-7tx ">401</h1>
+                </div>
+                <!--end::Illustration-->
+                <!--begin::Link-->
+                <div class="mb-0 d-flex justify-content-center align-items-center gap-3">
+                    <a asp-action="Index" asp-controller="Home" class="btn btn-sm btn-success">العودة إلى الصفحة الرئيسية</a>
+                    <a asp-action="Login" asp-controller="Accounts" asp-area="Identity" class="btn btn-sm btn-success">تسجيل الدخول</a>
+                </div>
+                <!--end::Link-->
+            </div>
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Content-->
+</div>
