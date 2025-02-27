@@ -57,8 +57,10 @@ namespace Aytaam.Data
                         FullName = "System Administrator",
                         UserName = "admin@test.com",
                         Email = "admin@test.com",
+                        ImagePath = "/assets/media/svg/files/blank-image.svg",
                         EmailConfirmed = true,
                         PhoneNumberConfirmed = true,
+
                     },
                     };
 

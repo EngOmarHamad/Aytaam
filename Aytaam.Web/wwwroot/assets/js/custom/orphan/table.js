@@ -60,7 +60,7 @@ var KTOrphansList = function () {
                     return `
                     <div class="d-flex align-items-center"><a target="_blank"  href="${row.imagePath}" class="me-4"><div class="symbol symbol-50px"><img src="${row.imagePath}"  class="object-fit-cover "/></div></a>		                <div class="d-flex flex-column">
 			                <a href="../../demo1/dist/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">${row.fullName}</a>
-			                <span>${row.email}</span>
+			                <span>${row.nationalIdNumber}</span>
 		                </div>
 				    </div>`
                 },

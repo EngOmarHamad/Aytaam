@@ -138,6 +138,7 @@ public class SponsorshipController : BaseController<SponsorshipController>
 
             }
         }
+        item.SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })];
         return PartialView("Partials/Sponsorship/AddOrUpdateSponsorship", item);
     }
     [HttpPost]

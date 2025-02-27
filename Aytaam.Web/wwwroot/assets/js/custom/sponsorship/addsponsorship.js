@@ -217,32 +217,22 @@ var KTSponsorshipsAddSponsorship = function () {
 
     }
     var initSelect2 = () => {
-        var element = document.querySelector('#AuthorId')
-        var element2 = document.querySelector('#AuthorType')
+        var element = document.querySelector('#SponsorshipType')
         if (element.getAttribute("data-kt-initialized") === "1") {
             return;
         }
-        if (element2.getAttribute("data-kt-initialized") === "1") {
-            return;
-        }
+
         var options = {
             dir: document.body.getAttribute("direction"),
         };
-        var options2 = {
-            dir: document.body.getAttribute("direction"),
-        };
+
 
         if (element.getAttribute("data-hide-search") == "true") {
             options.minimumResultsForSearch = Infinity;
         }
-        if (element2.getAttribute("data-hide-search") == "true") {
-            options2.minimumResultsForSearch = Infinity;
-        }
 
         $(element).select2(options);
-        $(element2).select2(options2);
         element.setAttribute("data-kt-initialized", "1");
-        element2.setAttribute("data-kt-initialized", "1");
     }
     return {
         // Public functions

@@ -17,65 +17,99 @@ var KTAddOrphan = function () {
         var validation;
         var _form = document.getElementById('kt_add_orphan_form');
         var submitButton = _form.querySelector('#kt_add_orphan_submit');
-
-        const imageInput = element.querySelector('.image-input');
-        const Orphan2IdValidators = {
-            validators: {
-                notEmpty: {
-                    message: 'خطيب المجلس الثاني حقل مطلوب'
-                },
-            },
-        };
-        const Board2DateTimeValidators = {
-            validators: {
-                notEmpty: {
-                    message: 'تاريخ ووقت المجلس الثاني مطلوب',
-                },
-            },
-        };
-        const OwnerIdValidators = {
-            validators: {
-                notEmpty: {
-                    message: 'صاحب المجلس حقل مطلوب'
-                },
-            },
-        };
-
-
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         validation = FormValidation.formValidation(
             _form,
             {
                 fields: {
-                    Title: {
+                    FullName: {
                         validators: {
                             notEmpty: {
-                                message: 'عنوان المجلس حقل مطلوب'
+                                message: 'إسم اليتيم حقل مطلوب'
                             }
                         }
                     },
 
-                    OrphanId: {
+                    NationalIdNumber: {
                         validators: {
                             notEmpty: {
-                                message: 'الخطيب  حقل مطلوب'
+                                message: ' رقم هوية اليتيم مطلوب',
                             }
                         }
                     },
-                    BoardDateTime: {
+                    OrphanType: {
                         validators: {
                             notEmpty: {
-                                message: 'تاريخ ووقت المجلس  حقل مطلوب'
+                                message: ' حالة اليتيم حقل مطلوب'
                             }
                         }
-                    }, LiveBroadcastLink: {
+                    },
+                    SponsorshipType: {
                         validators: {
-                            //notEmpty: {
-                            //    message: 'رابط البث المباشر للمجلس  حقل مطلوب'
-                            //},
-                            uri: {
-                                message: 'ادخل رابط صحيح'
-
+                            notEmpty: {
+                                message: 'حالة الكفالة حقل مطلوب'
+                            }
+                        }
+                    }, DateOfBirth: {
+                        validators: {
+                            notEmpty: {
+                                message: 'تاريخ الميلاد حقل مطلوب'
+                            }
+                        }
+                    },
+                    MedicalCondition: {
+                        validators: {
+                            notEmpty: {
+                                message: 'الحالة الصحية حقل مطلوب'
+                            }
+                        }
+                    }, GuardianRelation: {
+                        validators: {
+                            notEmpty: {
+                                message: ' صلة الوصي حقل مطلوب'
+                            }
+                        }
+                    }, GuardianName: {
+                        validators: {
+                            notEmpty: {
+                                message: 'اسم الوصي حقل مطلوب'
+                            }
+                        }
+                    },
+                    TotalFamilyMembers: {
+                        validators: {
+                            notEmpty: {
+                                message: ' عدد الأفراد الكلي حقل مطلوب'
+                            }
+                        }
+                    }, NumberOfSiblings: {
+                        validators: {
+                            notEmpty: {
+                                message: 'عدد الأخوة  حقل مطلوب'
+                            }
+                        }
+                    }, Image: {
+                        validators: {
+                            notEmpty: {
+                                message: ' صورة اليتيم حقل مطلوب'
+                            }
+                        }
+                    }, GuardianCertificate: {
+                        validators: {
+                            notEmpty: {
+                                message: 'شهادة الوصي حقل مطلوب'
+                            }
+                        }
+                    }, DeathCertificate: {
+                        validators: {
+                            notEmpty: {
+                                message: 'شهادة الوفاة حقل مطلوب'
+                            }
+                        }
+                    }, BirthCertificate: {
+                        validators: {
+                            notEmpty: {
+                                message: ' شهادة الميلاد حقل مطلوب'
                             }
                         }
                     },
@@ -105,6 +139,7 @@ var KTAddOrphan = function () {
                     var fromdata = new FormData();
 
                     fromdata.append("Code", $('#Code').val());
+                    fromdata.append("NationalIdNumber", $('#NationalIdNumber').val());
                     fromdata.append("FullName", $('#FullName').val());
                     fromdata.append("OrphanType", $('#OrphanType').val());
                     fromdata.append("SponsorshipType", $('#SponsorshipType').val());
@@ -141,7 +176,7 @@ var KTAddOrphan = function () {
                                 }).then(function (result) {
                                     if (result.isConfirmed) {
                                         toastr.success(msg);
-                                        window.location.href = "/Admin/Orphan/Index";
+                                        //window.location.href = "/Admin/Orphan/Index";
                                     }
                                 });
                             }
@@ -175,32 +210,10 @@ var KTAddOrphan = function () {
         });
     }
 
-    //const initToggleOwnerSelect = () => {
-    //    $('#AmITheOwner').on('select2:select', function (e) {
-    //        Toggle()
-    //    });
-    //    $('#AmITheOwner').on('select2:clear', function (e) {
-    //        Toggle();
-    //    });
-    //    function Toggle() {
-    //        if ($('#AmITheOwner').val() == "true") {
-    //            $("#selectOwner").addClass("d-none");
-    //            validation.removeField("OwnerId");
 
-    //        } else if ($('#AmITheOwner').val() == "false") {
-    //            $("#selectOwner").removeClass("d-none");
-    //            validation.addField("OwnerId", OwnerIdValidators);
-    //        }
-
-    //    }
-
-    //}
-    // Public methods
     return {
         init: function () {
             handleForm();
-            initSelect2Flags();
-            //initToggleOwnerSelect();
         }
     }
 }();

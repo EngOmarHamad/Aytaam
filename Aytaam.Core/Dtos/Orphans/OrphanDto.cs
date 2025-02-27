@@ -4,6 +4,8 @@
     {
         [Key]
         public string? Code { get; set; }
+        public int? NationalIdNumber { get; set; }
+
         [Display(Name = "الاسم كامل")]
         public string? FullName { get; set; }
         public string? WhatsApp { get; set; }

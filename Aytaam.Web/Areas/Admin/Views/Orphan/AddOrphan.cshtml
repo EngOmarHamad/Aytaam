@@ -98,6 +98,7 @@
                     <div class="form-text">أنواع الملفات المسموح بها: png، jpg، jpeg.</div>
                 </div>
             </div>
+
             <div class="row fv-row mb-7">
                 <div class="col-md-2 text-md-end">
                     <label class="fs-6 fw-semibold form-label mt-3">
@@ -109,7 +110,17 @@
                     <input asp-for="Dto.FullName" id="FullName" name="FullName" class="form-control" />
                 </div>
             </div>
-
+            <div class="row fv-row mb-7">
+                <div class="col-md-2 text-md-end">
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span class="required">رقم هوية اليتيم </span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="رقم هوية اليتيم."></i>
+                    </label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Dto.NationalIdNumber" id="NationalIdNumber" name="NationalIdNumber" class="form-control" />
+                </div>
+            </div>
             <div class="row fv-row mb-7">
                 <div class="col-md-2 text-md-end">
 
@@ -240,24 +251,51 @@
                     <textarea class="form-control" rows="5" asp-for="Dto.Notes" name="Notes" id="Notes"></textarea>
                 </div>
             </div>
-            <div class="fv-row mb-7">
-                <span>شهادة الوصي </span>
-                <div class="form-text">أنواع الملفات المسموح بها: pdf</div>
-                <input type="file" asp-for="Dto.GuardianCertificate" id="GuardianCertificate" />
+            <div class="row fv-row mb-7">
+                <div class="col-md-2 text-md-end">
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span>شهادة الوصي</span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="شهادة الوصي"></i>
+                    </label>
+                </div>
+                <div class="col-md-10">
+                    <div class="w-100">
+                        <input type="file" class="form-control" name="GuardianCertificate" asp-for="Dto.GuardianCertificate" id="GuardianCertificate" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="row fv-row mb-7">
+                <div class="col-md-2 text-md-end">
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span>شهادة الوفاة</span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="شهادة الوفاة"></i>
+                    </label>
+                </div>
+                <div class="col-md-10">
+                    <div class="w-100">
+                        <input type="file" class="form-control" name="DeathCertificate" asp-for="Dto.DeathCertificate" id="DeathCertificate" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="row fv-row mb-7">
+                <div class="col-md-2 text-md-end">
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span>شهادة الميلاد</span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="شهادة الميلاد"></i>
+                    </label>
+                </div>
+                <div class="col-md-10">
+                    <div class="w-100">
+                        <input class="form-control" name="BirthCertificate" asp-for="Dto.BirthCertificate" id="BirthCertificate" />
+
+                    </div>
+                </div>
+            </div>
 
 
-            </div>
-            <div class="fv-row mb-7">
-                <span class=" ">شهادة الوفاة </span>
-                <div class="form-text">أنواع الملفات المسموح بها: pdf أو png,jpeg  </div>
-                <input type="file" asp-for="Dto.DeathCertificate" id="DeathCertificate" />
 
-            </div>
-            <div class="fv-row mb-7">
-                <span class="">شهادة الوصي </span>
-                <input type="file" asp-for="Dto.BirthCertificate" id="BirthCertificate" />
-                <div class="form-text">أنواع الملفات المسموح بها: pdf</div>
-            </div>
             <div class="row py-5">
                 <div class="col-md-10 offset-md-2">
                     <div class="d-flex">

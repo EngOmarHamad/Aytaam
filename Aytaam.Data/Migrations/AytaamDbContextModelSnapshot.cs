@@ -128,6 +128,9 @@ namespace Aytaam.Data.Migrations
                     b.Property<string>("MedicalCondition")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("NationalIdNumber")
+                        .HasColumnType("int");
+
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 

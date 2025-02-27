@@ -35,5 +35,5 @@ public class InputSponsorshipDto
     public string? OrphanName { get; set; }
 
     public SelectList? Orphans { get; set; }
-    public SelectList? SponsorshipTypes { get; set; }
+    public List<SelectListItem>? SponsorshipTypes { get; set; }
 }

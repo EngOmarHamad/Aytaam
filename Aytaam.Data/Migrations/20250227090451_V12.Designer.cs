@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aytaam.Data.Migrations
 {
     [DbContext(typeof(AytaamDbContext))]
-    [Migration("20250226113037_MigrationName")]
-    partial class MigrationName
+    [Migration("20250227090451_V12")]
+    partial class V12
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,6 +130,9 @@ namespace Aytaam.Data.Migrations
 
                     b.Property<string>("MedicalCondition")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NationalIdNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");

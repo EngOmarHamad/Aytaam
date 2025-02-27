@@ -43,13 +43,11 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
     }
     public async Task<string?> CreateAsync(InputOrphanDto input)
     {
-        input.Code = await GenerateOrphanCodeAsync();
-
-        ///Here write a code to generate code for Orphan
         var orphan = new Orphan()
         {
-
+            Code = await GenerateOrphanCodeAsync(),
             FullName = input.FullName,
+            NationalIdNumber = input.NationalIdNumber,
             WhatsApp = input.WhatsApp,
             MedicalCondition = input.MedicalCondition,
             Residence = input.Residence,
@@ -63,6 +61,14 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
         };
         if (input.Image != null)
             orphan.ImagePath = (await _fileService.UploadAsync(input.Image, FolderNames.OrphansImages)).Item1;
+
+        if (input.BirthCertificate != null)
+            orphan.BirthCertificatePath = (await _fileService.UploadAsync(input.BirthCertificate, FolderNames.OrphansPdfs)).Item1;
+        if (input.DeathCertificate != null)
+            orphan.DeathCertificatePath = (await _fileService.UploadAsync(input.DeathCertificate, FolderNames.OrphansPdfs)).Item1;
+        if (input.GuardianCertificate != null)
+            orphan.GuardianCertificatePath = (await _fileService.UploadAsync(input.GuardianCertificate, FolderNames.OrphansPdfs)).Item1;
+
 
         var createOrphanResult = await _db.TblOrphans.AddAsync(orphan);
 

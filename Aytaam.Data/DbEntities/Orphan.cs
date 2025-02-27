@@ -3,6 +3,7 @@ public class Orphan
 {
     [Key]
     public string? Code { get; set; }
+    public int? NationalIdNumber { get; set; }
     public string? FullName { get; set; } // الاسم الرباعي
     public DateTime? DateOfBirth { get; set; } // تاريخ الميلاد
     public string? Residence { get; set; } // السكن
