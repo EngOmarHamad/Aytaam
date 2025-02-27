@@ -24,13 +24,22 @@ public class OrphanController(IMapper mapper, UserManager<Account> userManager, 
             AgeGroups = [.. EnumsHelper.GetListAgeGroups().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
         });
     }
-    public IActionResult AddOrphan()
+    [Route("{code?}")]
+    public async Task<ActionResult> AddOrphanAsync(string? code)
     {
+        var dto = new InputOrphanDto();
+
+        if (code is not null)
+
+        {
+            dto = await orphanService.GetAsync(code);
+        }
         return View(new AddOrphanViewModel()
         {
             OrphanTypes = [.. EnumsHelper.GetListOrphanTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
             SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
             AgeGroups = [.. EnumsHelper.GetListAgeGroups().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
+            Dto = dto,
         });
     }
     [HttpPost]
