@@ -201,7 +201,7 @@
     const getCharMapAppend = option('charmap_append');
 
     const isArray = global.isArray;
-    const OrphanDefined = 'Orphan Defined';
+    const UserDefined = 'User Defined';
     const getDefaultCharMap = () => {
       return [
         {
@@ -1411,13 +1411,13 @@
       const userCharMap = getCharMap$1(editor);
       if (userCharMap) {
         charmap = [{
-            name: OrphanDefined,
+            name: UserDefined,
             characters: getCharsFromOption(userCharMap)
           }];
       }
       const userCharMapAppend = getCharMapAppend(editor);
       if (userCharMapAppend) {
-        const userDefinedGroup = global.grep(charmap, cg => cg.name === OrphanDefined);
+        const userDefinedGroup = global.grep(charmap, cg => cg.name === UserDefined);
         if (userDefinedGroup.length) {
           userDefinedGroup[0].characters = [
             ...userDefinedGroup[0].characters,
@@ -1426,7 +1426,7 @@
           return charmap;
         }
         return charmap.concat({
-          name: OrphanDefined,
+          name: UserDefined,
           characters: getCharsFromOption(userCharMapAppend)
         });
       }
@@ -1546,7 +1546,7 @@
         type: 'tabpanel',
         tabs: makeTabs()
       });
-      const currentTab = charMap.length === 1 ? Cell(OrphanDefined) : Cell('All');
+      const currentTab = charMap.length === 1 ? Cell(UserDefined) : Cell('All');
       const scanAndSet = (dialogApi, pattern) => {
         find(charMap, group => group.name === currentTab.get()).each(f => {
           const items = scan(f, pattern);

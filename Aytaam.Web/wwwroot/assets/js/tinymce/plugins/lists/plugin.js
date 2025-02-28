@@ -518,9 +518,9 @@
       }
       return dom.isBlock(node.nextSibling) && !isBr(node.previousSibling);
     };
-    const isEmpty$2 = (dom, elm, keepSponsorshipmarks) => {
+    const isEmpty$2 = (dom, elm, keepBookmarks) => {
       const empty = dom.isEmpty(elm);
-      if (keepSponsorshipmarks && dom.select('span[data-mce-type=Sponsorshipmark]', elm).length > 0) {
+      if (keepBookmarks && dom.select('span[data-mce-type=bookmark]', elm).length > 0) {
         return false;
       }
       return empty;
@@ -554,7 +554,7 @@
       }
       while (node = contentNode.firstChild) {
         const nodeName = node.nodeName;
-        if (!hasContentNode && (nodeName !== 'SPAN' || node.getAttribute('data-mce-type') !== 'Sponsorshipmark')) {
+        if (!hasContentNode && (nodeName !== 'SPAN' || node.getAttribute('data-mce-type') !== 'bookmark')) {
           hasContentNode = true;
         }
         if (isBlock(node, blockElements)) {
@@ -576,16 +576,16 @@
 
     const DOM$2 = global$3.DOM;
     const splitList = (editor, list, li) => {
-      const removeAndKeepSponsorshipmarks = targetNode => {
+      const removeAndKeepBookmarks = targetNode => {
         const parent = targetNode.parentNode;
         if (parent) {
-          global$2.each(Sponsorshipmarks, node => {
+          global$2.each(bookmarks, node => {
             parent.insertBefore(node, li.parentNode);
           });
         }
         DOM$2.remove(targetNode);
       };
-      const Sponsorshipmarks = DOM$2.select('span[data-mce-type="Sponsorshipmark"]', list);
+      const bookmarks = DOM$2.select('span[data-mce-type="bookmark"]', list);
       const newBlock = createTextBlock(editor, li);
       const tmpRng = DOM$2.createRng();
       tmpRng.setStartAfter(li);
@@ -603,7 +603,7 @@
       DOM$2.insertAfter(newBlock, list);
       const parent = li.parentElement;
       if (parent && isEmpty$2(editor.dom, parent)) {
-        removeAndKeepSponsorshipmarks(parent);
+        removeAndKeepBookmarks(parent);
       }
       DOM$2.remove(li);
       if (isEmpty$2(editor.dom, list)) {
@@ -1010,10 +1010,10 @@
       const dlItems = fromDom(getSelectedDlItems(editor));
       let isHandled = false;
       if (lists.length || dlItems.length) {
-        const Sponsorshipmark = editor.selection.getSponsorshipmark();
+        const bookmark = editor.selection.getBookmark();
         listIndentation(editor, lists, indentation);
         dlIndentation(editor, indentation, dlItems);
-        editor.selection.moveToSponsorshipmark(Sponsorshipmark);
+        editor.selection.moveToBookmark(bookmark);
         editor.selection.setRng(normalizeRange(editor.selection.getRng()));
         editor.nodeChanged();
         isHandled = true;
@@ -1028,16 +1028,16 @@
     const zeroWidth = '\uFEFF';
     const isZwsp = char => char === zeroWidth;
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.dom.SponsorshipmarkManager');
+    var global$1 = tinymce.util.Tools.resolve('tinymce.dom.BookmarkManager');
 
     const DOM$1 = global$3.DOM;
-    const createSponsorshipmark = rng => {
-      const Sponsorshipmark = {};
+    const createBookmark = rng => {
+      const bookmark = {};
       const setupEndPoint = start => {
         let container = rng[start ? 'startContainer' : 'endContainer'];
         let offset = rng[start ? 'startOffset' : 'endOffset'];
         if (isElement(container)) {
-          const offsetNode = DOM$1.create('span', { 'data-mce-type': 'Sponsorshipmark' });
+          const offsetNode = DOM$1.create('span', { 'data-mce-type': 'bookmark' });
           if (container.hasChildNodes()) {
             offset = Math.min(offset, container.childNodes.length - 1);
             if (start) {
@@ -1051,16 +1051,16 @@
           container = offsetNode;
           offset = 0;
         }
-        Sponsorshipmark[start ? 'startContainer' : 'endContainer'] = container;
-        Sponsorshipmark[start ? 'startOffset' : 'endOffset'] = offset;
+        bookmark[start ? 'startContainer' : 'endContainer'] = container;
+        bookmark[start ? 'startOffset' : 'endOffset'] = offset;
       };
       setupEndPoint(true);
       if (!rng.collapsed) {
         setupEndPoint();
       }
-      return Sponsorshipmark;
+      return bookmark;
     };
-    const resolveSponsorshipmark = Sponsorshipmark => {
+    const resolveBookmark = bookmark => {
       const restoreEndPoint = start => {
         const nodeIndex = container => {
           var _a;
@@ -1070,15 +1070,15 @@
             if (node === container) {
               return idx;
             }
-            if (!isElement(node) || node.getAttribute('data-mce-type') !== 'Sponsorshipmark') {
+            if (!isElement(node) || node.getAttribute('data-mce-type') !== 'bookmark') {
               idx++;
             }
             node = node.nextSibling;
           }
           return -1;
         };
-        let container = Sponsorshipmark[start ? 'startContainer' : 'endContainer'];
-        let offset = Sponsorshipmark[start ? 'startOffset' : 'endOffset'];
+        let container = bookmark[start ? 'startContainer' : 'endContainer'];
+        let offset = bookmark[start ? 'startOffset' : 'endOffset'];
         if (!container) {
           return;
         }
@@ -1091,15 +1091,15 @@
             container.appendChild(DOM$1.create('br'));
           }
         }
-        Sponsorshipmark[start ? 'startContainer' : 'endContainer'] = container;
-        Sponsorshipmark[start ? 'startOffset' : 'endOffset'] = offset;
+        bookmark[start ? 'startContainer' : 'endContainer'] = container;
+        bookmark[start ? 'startOffset' : 'endOffset'] = offset;
       };
       restoreEndPoint(true);
       restoreEndPoint();
       const rng = DOM$1.createRng();
-      rng.setStart(Sponsorshipmark.startContainer, Sponsorshipmark.startOffset);
-      if (Sponsorshipmark.endContainer) {
-        rng.setEnd(Sponsorshipmark.endContainer, Sponsorshipmark.endOffset);
+      rng.setStart(bookmark.startContainer, bookmark.startOffset);
+      if (bookmark.endContainer) {
+        rng.setEnd(bookmark.endContainer, bookmark.endOffset);
       }
       return normalizeRange(rng);
     };
@@ -1223,7 +1223,7 @@
           return;
         }
         const nextSibling = node.nextSibling;
-        if (global$1.isSponsorshipmarkNode(node)) {
+        if (global$1.isBookmarkNode(node)) {
           if (isListNode(nextSibling) || isTextBlock(editor, nextSibling) || !nextSibling && node.parentNode === root) {
             block = null;
             return;
@@ -1256,7 +1256,7 @@
       if (listName === 'DL') {
         listItemName = 'DT';
       }
-      const Sponsorshipmark = createSponsorshipmark(rng);
+      const bookmark = createBookmark(rng);
       const selectedTextBlocks = filter$1(getSelectedTextBlocks(editor, rng, root), editor.dom.isEditable);
       global$2.each(selectedTextBlocks, block => {
         let listBlock;
@@ -1289,7 +1289,7 @@
           mergeWithAdjacentLists(editor.dom, listBlock);
         }
       });
-      editor.selection.setRng(resolveSponsorshipmark(Sponsorshipmark));
+      editor.selection.setRng(resolveBookmark(bookmark));
     };
     const isValidLists = (list1, list2) => {
       return isListNode(list1) && list1.nodeName === (list2 === null || list2 === void 0 ? void 0 : list2.nodeName);
@@ -1340,7 +1340,7 @@
         flattenListSelection(editor);
       } else {
         applyList(editor, listName, detail);
-        const Sponsorshipmark = createSponsorshipmark(editor.selection.getRng());
+        const bookmark = createBookmark(editor.selection.getRng());
         const allLists = parentIsList ? [
           parentList,
           ...lists
@@ -1348,7 +1348,7 @@
         global$2.each(allLists, elm => {
           updateList$1(editor, elm, listName, detail);
         });
-        editor.selection.setRng(resolveSponsorshipmark(Sponsorshipmark));
+        editor.selection.setRng(resolveBookmark(bookmark));
       }
     };
     const hasListStyleDetail = detail => {
@@ -1362,11 +1362,11 @@
         if (parentList.nodeName === listName && !hasListStyleDetail(detail) && !isCustomList(parentList)) {
           flattenListSelection(editor);
         } else {
-          const Sponsorshipmark = createSponsorshipmark(editor.selection.getRng());
+          const bookmark = createBookmark(editor.selection.getRng());
           updateListWithDetails(editor.dom, parentList, detail);
           const newList = editor.dom.rename(parentList, listName);
           mergeWithAdjacentLists(editor.dom, newList);
-          editor.selection.setRng(resolveSponsorshipmark(Sponsorshipmark));
+          editor.selection.setRng(resolveBookmark(bookmark));
           applyList(editor, listName, detail);
           fireListEvent(editor, listToggleActionFromListName(listName), newList);
         }
@@ -1510,16 +1510,16 @@
       if (dom.isEmpty(toLi)) {
         mergeIntoEmptyLi(editor, fromLi, toLi);
       } else {
-        const Sponsorshipmark = createSponsorshipmark(rng);
+        const bookmark = createBookmark(rng);
         mergeLiElements(dom, fromLi, toLi);
-        editor.selection.setRng(resolveSponsorshipmark(Sponsorshipmark));
+        editor.selection.setRng(resolveBookmark(bookmark));
       }
     };
     const mergeBackward = (editor, rng, fromLi, toLi) => {
-      const Sponsorshipmark = createSponsorshipmark(rng);
+      const bookmark = createBookmark(rng);
       mergeLiElements(editor.dom, fromLi, toLi);
-      const resolvedSponsorshipmark = resolveSponsorshipmark(Sponsorshipmark);
-      editor.selection.setRng(resolvedSponsorshipmark);
+      const resolvedBookmark = resolveBookmark(bookmark);
+      editor.selection.setRng(resolvedBookmark);
     };
     const backspaceDeleteFromListToListCaret = (editor, isForward) => {
       const dom = editor.dom, selection = editor.selection;

@@ -390,7 +390,7 @@ function isArrayBuffer(val) {
 /** @private */
 async function sendMessage(logger, transportName, httpClient, url, content, options) {
     const headers = {};
-    const [name, value] = getOrphanAgentHeader();
+    const [name, value] = getUserAgentHeader();
     headers[name] = value;
     logger.log(LogLevel.Trace, `(${transportName} transport) sending data. ${getDataDetail(content, options.logMessageContent)}.`);
     const responseType = isArrayBuffer(content) ? "arraybuffer" : "text";
@@ -461,15 +461,15 @@ class ConsoleLogger {
     }
 }
 /** @private */
-function getOrphanAgentHeader() {
-    let userAgentHeaderName = "X-SignalR-Orphan-Agent";
+function getUserAgentHeader() {
+    let userAgentHeaderName = "X-SignalR-User-Agent";
     if (Platform.isNode) {
-        userAgentHeaderName = "Orphan-Agent";
+        userAgentHeaderName = "User-Agent";
     }
-    return [userAgentHeaderName, constructOrphanAgent(VERSION, getOsName(), getRuntime(), getRuntimeVersion())];
+    return [userAgentHeaderName, constructUserAgent(VERSION, getOsName(), getRuntime(), getRuntimeVersion())];
 }
 /** @private */
-function constructOrphanAgent(version, os, runtime, runtimeVersion) {
+function constructUserAgent(version, os, runtime, runtimeVersion) {
     // Microsoft SignalR/[Version] ([Detailed Version]; [Operating System]; [Runtime]; [Runtime Version])
     let userAgent = "Microsoft SignalR/";
     const majorAndMinor = version.split(".");
@@ -1994,7 +1994,7 @@ class LongPollingTransport {
             (typeof XMLHttpRequest !== "undefined" && typeof new XMLHttpRequest().responseType !== "string")) {
             throw new Error("Binary protocols over XmlHttpRequest not implementing advanced features are not supported.");
         }
-        const [name, value] = getOrphanAgentHeader();
+        const [name, value] = getUserAgentHeader();
         const headers = { [name]: value, ...this._options.headers };
         const pollOptions = {
             abortSignal: this._pollAbort.signal,
@@ -2096,7 +2096,7 @@ class LongPollingTransport {
             // Send DELETE to clean up long polling on the server
             this._logger.log(LogLevel.Trace, `(LongPolling transport) sending DELETE request to ${this._url}.`);
             const headers = {};
-            const [name, value] = getOrphanAgentHeader();
+            const [name, value] = getUserAgentHeader();
             headers[name] = value;
             const deleteOptions = {
                 headers: { ...headers, ...this._options.headers },
@@ -2166,7 +2166,7 @@ class ServerSentEventsTransport {
                 const cookies = this._httpClient.getCookieString(url);
                 const headers = {};
                 headers.Cookie = cookies;
-                const [name, value] = getOrphanAgentHeader();
+                const [name, value] = getUserAgentHeader();
                 headers[name] = value;
                 eventSource = new this._options.EventSource(url, { withCredentials: this._options.withCredentials, headers: { ...headers, ...this._options.headers } });
             }
@@ -2264,7 +2264,7 @@ class WebSocketTransport {
             let opened = false;
             if (Platform.isNode || Platform.isReactNative) {
                 const headers = {};
-                const [name, value] = getOrphanAgentHeader();
+                const [name, value] = getUserAgentHeader();
                 headers[name] = value;
                 if (token) {
                     headers[HeaderNames.Authorization] = `Bearer ${token}`;
@@ -2608,7 +2608,7 @@ class HttpConnection {
     }
     async _getNegotiationResponse(url) {
         const headers = {};
-        const [name, value] = getOrphanAgentHeader();
+        const [name, value] = getUserAgentHeader();
         headers[name] = value;
         const negotiateUrl = this._resolveNegotiateUrl(url);
         this._logger.log(LogLevel.Debug, `Sending negotiation request: ${negotiateUrl}.`);

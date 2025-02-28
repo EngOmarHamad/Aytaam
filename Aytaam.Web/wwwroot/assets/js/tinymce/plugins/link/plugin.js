@@ -512,7 +512,7 @@
     };
     const unlinkSelection = editor => {
       const dom = editor.dom, selection = editor.selection;
-      const Sponsorshipmark = selection.getSponsorshipmark();
+      const bookmark = selection.getBookmark();
       const rng = selection.getRng().cloneRange();
       const startAnchorElm = dom.getParent(rng.startContainer, 'a[href]', editor.getBody());
       const endAnchorElm = dom.getParent(rng.endContainer, 'a[href]', editor.getBody());
@@ -524,7 +524,7 @@
       }
       selection.setRng(rng);
       editor.execCommand('unlink');
-      selection.moveToSponsorshipmark(Sponsorshipmark);
+      selection.moveToBookmark(bookmark);
     };
     const unlinkDomMutation = editor => {
       editor.undoManager.transact(() => {

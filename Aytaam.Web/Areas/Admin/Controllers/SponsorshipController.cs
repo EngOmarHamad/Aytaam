@@ -82,6 +82,7 @@ public class SponsorshipController : BaseController<SponsorshipController>
         foreach (var item in data)
         {
             var dto = _mapper.Map<SponsorshipDto>(item);
+            dto.OrphanName = item.Orphan.FullName;
             Sponsorships.Add(dto);
         }
         var dataTableObj = new

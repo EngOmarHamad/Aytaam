@@ -177,7 +177,7 @@
     const register = editor => {
       const onAction = () => editor.execCommand('mceAnchor');
       editor.ui.registry.addToggleButton('anchor', {
-        icon: 'Sponsorshipmark',
+        icon: 'bookmark',
         tooltip: 'Anchor',
         onAction,
         onSetup: buttonApi => {
@@ -190,7 +190,7 @@
         }
       });
       editor.ui.registry.addMenuItem('anchor', {
-        icon: 'Sponsorshipmark',
+        icon: 'bookmark',
         text: 'Anchor...',
         onAction,
         onSetup: onSetupEditable(editor)

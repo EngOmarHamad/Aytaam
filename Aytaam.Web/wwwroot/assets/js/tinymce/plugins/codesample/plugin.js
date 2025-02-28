@@ -2002,7 +2002,7 @@
           pattern: /(\bclass\s+)\w+/i,
           lookbehind: true
         },
-        'decOrphan': {
+        'decorator': {
           pattern: /(^[\t ]*)@\w+(?:\.\w+)*/m,
           lookbehind: true,
           alias: [

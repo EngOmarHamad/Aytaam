@@ -54,16 +54,12 @@
                                         <div class="menu-item">
                                             <a class="menu-link nav-link active py-3 px-4 px-xxl-6" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" asp-action="Index" asp-controller="Home">الرئيسية</a>
                                         </div>
-
-
                                         <div class="menu-item">
-                                            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-end" class="menu-item   menu-lg-down-accordion me-0 me-lg-2">
-                                                <a class="menu-link nav-link py-3 px-4 px-xxl-6" asp-action="Index" asp-controller="Home" asp-fragment="AboutUs" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">من نحن</a>
-                                            </div>
-                                            <div class="menu-item">
-                                                <a class="menu-link nav-link py-3 px-4 px-xxl-6" asp-action="Index" asp-controller="Home" asp-fragment="contact" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">تواصل معنا </a>
-                                            </div>
+                                            <a class="menu-link nav-link py-3 px-4 px-xxl-6" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" asp-controller="AboutUs" asp-action="Index">من نحن</a>
                                         </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -71,9 +67,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
-                    @await RenderSectionAsync("PageHeader", required: false)
-                </div>
+                @await RenderSectionAsync("PageHeader", required: false)
             </div>
             <div class="landing-curve landing-dark-color mb-10 mb-lg-20">
                 <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">

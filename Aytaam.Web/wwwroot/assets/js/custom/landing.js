@@ -6,7 +6,7 @@ var KTLandingPage = function () {
 
     var initTyped = function () {
         var typed = new Typed("#kt_landing_hero_text", {
-            strings: ["أَهْلًا وَسَهْلًا بِكُم فِي مَوْقِع أيتام"],
+            strings: ["أَهْلًا وَسَهْلًا بِكُم فِي مَوْقِع أيتام", "كن كهاتين.. واصنع الفرق لأيتام غزة"],
             typeSpeed: 20,
             loop: true,
             loopCount: Infinity,

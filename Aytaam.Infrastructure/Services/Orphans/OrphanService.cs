@@ -16,7 +16,11 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
         var dbQuery = _db.TblOrphans.AsQueryable();
         if (!string.IsNullOrWhiteSpace(query.GeneralSearch))
         {
-            dbQuery = dbQuery.Where(x => x.FullName != null && x.FullName.Contains(query.GeneralSearch));
+            dbQuery = dbQuery.Where(p =>
+                   (p.NationalIdNumber != null && p.NationalIdNumber.ToString().ToLower().Trim().Contains(query.GeneralSearch.ToLower().Trim())) ||
+                      (p.Code != null && p.Code.ToString().ToLower().Trim().Contains(query.GeneralSearch.ToLower().Trim())) ||
+                           (p.FullName != null && p.FullName.ToLower().Trim().Contains(query.GeneralSearch.ToLower().Trim())
+                   ));
         }
         if (query.OrphanType != null)
         {

@@ -239,7 +239,7 @@
         return !group.filter || group.filter(selector);
       });
     };
-    const compileOrphanDefinedGroups = groups => {
+    const compileUserDefinedGroups = groups => {
       return global.map(groups, group => {
         return global.extend({}, group, {
           original: group,
@@ -280,7 +280,7 @@
         const model = generate();
         const globallyUniqueSelectors = {};
         const selectorFilter = compileFilter(getSelectorFilter(editor));
-        const groups = compileOrphanDefinedGroups(getCssGroups(editor));
+        const groups = compileUserDefinedGroups(getCssGroups(editor));
         const processSelector = (selector, group) => {
           if (isUniqueSelector(editor, selector, group, globallyUniqueSelectors)) {
             markUniqueSelector(editor, selector, group, globallyUniqueSelectors);

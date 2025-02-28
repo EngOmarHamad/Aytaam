@@ -441,12 +441,12 @@
     };
     const toggle = editor => {
       const body = editor.getBody();
-      const Sponsorshipmark = editor.selection.getSponsorshipmark();
+      const bookmark = editor.selection.getBookmark();
       let parentNode = findParentElm(editor.selection.getNode(), body);
       parentNode = parentNode !== undefined ? parentNode : body;
       hide(editor, parentNode);
       show(editor, parentNode);
-      editor.selection.moveToSponsorshipmark(Sponsorshipmark);
+      editor.selection.moveToBookmark(bookmark);
     };
 
     const applyVisualChars = (editor, toggleState) => {
@@ -460,9 +460,9 @@
     };
     const toggleVisualChars = (editor, toggleState) => {
       toggleState.set(!toggleState.get());
-      const Sponsorshipmark = editor.selection.getSponsorshipmark();
+      const bookmark = editor.selection.getBookmark();
       applyVisualChars(editor, toggleState);
-      editor.selection.moveToSponsorshipmark(Sponsorshipmark);
+      editor.selection.moveToBookmark(bookmark);
     };
 
     const register$2 = (editor, toggleState) => {

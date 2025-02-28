@@ -312,10 +312,10 @@
       travel_and_places: 'Travel and Places',
       objects: 'Objects',
       flags: 'Flags',
-      user: 'Orphan Defined'
+      user: 'User Defined'
     };
     const translateCategory = (categories, name) => has(categories, name) ? categories[name] : name;
-    const getOrphanDefinedEmoji = editor => {
+    const getUserDefinedEmoji = editor => {
       const userDefinedEmoticons = getAppendedEmoji(editor);
       return map(userDefinedEmoticons, value => ({
         keywords: [],
@@ -353,7 +353,7 @@
       };
       editor.on('init', () => {
         global.load(databaseId, databaseUrl).then(emojis => {
-          const userEmojis = getOrphanDefinedEmoji(editor);
+          const userEmojis = getUserDefinedEmoji(editor);
           processEmojis(merge(emojis, userEmojis));
         }, err => {
           console.log(`Failed to load emojis: ${ err }`);

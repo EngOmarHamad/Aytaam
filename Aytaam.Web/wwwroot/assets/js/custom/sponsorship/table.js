@@ -57,6 +57,7 @@ var KTSponsorshipsList = function () {
                 "data": "sponsorName", "title": "إسم المتكفل",
             },
 
+            { "data": "orphanName", "title": "إسم اليتيم" },
             { "data": "startDate", "title": "تاريخ البداية" },
             { "data": "endDate", "title": "تاريخ النهاية" },
             { "data": "amount", "title": "المبلغ" },
@@ -67,10 +68,10 @@ var KTSponsorshipsList = function () {
                     var badgeClass = "";
                     var badgeText = "";
 
-                    if (row.sponsorshipType == 0) {
+                    if (row.sponsorshipType == 1) {
                         badgeClass = "badge bg-success";
                         badgeText = "جزئية";
-                    } else if (row.sponsorshipType == 1) {
+                    } else if (row.sponsorshipType == 0) {
                         badgeClass = "badge bg-danger";
                         badgeText = "كلية";
                     } else if (row.sponsorshipType == 2) {
@@ -96,7 +97,7 @@ var KTSponsorshipsList = function () {
 														</a>
                                                           <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                              <div class="menu-item px-3">
-															<a  class="menu-link px-3" onclick="initToggleAddSponsorshipModal('${row.id}')">تعديل</a>
+															<a  class="menu-link px-3" onclick="initToggleAddOrUpdateSponsorshipModal('${row.id}')">تعديل</a>
 														</div>
 														<div class="menu-item px-3">
 															<a  class="menu-link px-3" onclick="DeleteSponsorship('${row.id}')">حذف</a>

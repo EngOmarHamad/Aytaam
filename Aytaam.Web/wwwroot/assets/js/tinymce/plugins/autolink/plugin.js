@@ -164,7 +164,7 @@
   const convertToLink = (editor, result) => {
     const {dom, selection} = editor;
     const {rng, url} = result;
-    const Sponsorshipmark = selection.getSponsorshipmark();
+    const bookmark = selection.getBookmark();
     selection.setRng(rng);
     const command = 'createlink';
     const args = {
@@ -185,7 +185,7 @@
         }
       }
     }
-    selection.moveToSponsorshipmark(Sponsorshipmark);
+    selection.moveToBookmark(bookmark);
     editor.nodeChanged();
   };
   const handleSpacebar = editor => {

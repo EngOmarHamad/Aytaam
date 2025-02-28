@@ -561,12 +561,12 @@
       return matches.length;
     };
     const findAndMarkInSelection = (dom, pattern, selection, replacementNode) => {
-      const Sponsorshipmark = selection.getSponsorshipmark();
+      const bookmark = selection.getBookmark();
       const nodes = dom.select('td[data-mce-selected],th[data-mce-selected]');
       const textSections = nodes.length > 0 ? fromNodes(dom, nodes) : fromRng(dom, selection.getRng());
       const matches = find$1(pattern, textSections);
       mark(matches, replacementNode);
-      selection.moveToSponsorshipmark(Sponsorshipmark);
+      selection.moveToBookmark(bookmark);
       return matches.length;
     };
 

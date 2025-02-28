@@ -15,6 +15,7 @@ public class MappingProfile : Profile
         #region Sponsorships
 
         CreateMap<Sponsorship, SponsorshipDto>().ReverseMap();
+        CreateMap<Sponsorship, InputSponsorshipDto>().ReverseMap();
 
         //CreateMap<Sponsorship, InputSponsorshipDto>()
         //    .ForMember(x => x.Orphans, x => x.Ignore())

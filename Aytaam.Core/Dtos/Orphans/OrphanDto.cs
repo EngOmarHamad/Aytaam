@@ -21,7 +21,11 @@
         public string? GuardianRelation { get; set; } // صلة الوصي
         public string? GuardianName { get; set; } // اسم الوصي
         public string? Notes { get; set; } // ملاحظات
-        public OrphanType OrphanType { get; set; }
+        public OrphanType? OrphanType { get; set; }
         public SponsorshipType SponsorshipType { get; set; }
+        public decimal? Amount { get; set; }
+        public double? ProgressPercentage { get; set; }
+        public int? NumberOfSponsorShipMonths { get; set; }
+        public int? NumberOfRemainderSponsorShipMonths { get; set; }
     }
 }
