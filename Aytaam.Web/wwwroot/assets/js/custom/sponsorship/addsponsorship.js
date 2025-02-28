@@ -9,13 +9,13 @@ var KTSponsorshipsAddSponsorship = function () {
 
         $("#StartDate").flatpickr({
             "locale": "ar", "static": true,
-            dateFormat: "M/d/Y",
+            dateFormat: "Y-m-d",
         });
 
 
         $("#EndDate").flatpickr({
             "locale": "ar", "static": true,
-            dateFormat: "M/d/Y",
+            dateFormat: "Y-m-d",
         });
 
 

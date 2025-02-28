@@ -9,7 +9,7 @@ var KTAddOrphan = function () {
 
         $("#DateOfBirth").flatpickr({
             "locale": "ar", "static": true,
-            dateFormat: "M/d/Y",
+            dateFormat: "Y-m-d",
         });
 
 
@@ -62,6 +62,9 @@ var KTAddOrphan = function () {
                         validators: {
                             notEmpty: {
                                 message: 'السكن حقل مطلوب'
+                            }, regexp: {
+                                regexp: /^[\u0600-\u06FF\sA-Za-z]+$/,
+                                message: 'يجب ألا يحتوي السكن على أرقام أو رموز خاصة'
                             }
                         }
                     },

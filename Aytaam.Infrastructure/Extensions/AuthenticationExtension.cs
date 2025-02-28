@@ -10,7 +10,7 @@ public static class AuthenticationExtension
             config.Password.RequireDigit = true;
             config.Password.RequiredLength = 6;
             config.Password.RequireLowercase = true;
-            config.Password.RequireNonAlphanumeric = true;
+            config.Password.RequireNonAlphanumeric = false;
             config.Password.RequireUppercase = true;
             config.SignIn.RequireConfirmedEmail = false;
             config.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"; // to accept digits and letters

@@ -127,21 +127,22 @@ function RenderCards(Orphan) {
                             ${Orphan.progressPercentage}%
                         </div>
                     </div>
-                    <h5 class="card-title">أهلًا، أنا ${Orphan.fullName} وعمري 10 سنوات</h5>
+                    <h5 class="card-title">أهلًا، أنا ${Orphan.fullName} وعمري ${Orphan.age} سنوات</h5>
                     <div class="d-flex justify-content-between p-2 bg-warning-light">
                         <div class="text-center">
                             <p class="mb-1 text-warning fw-bold">الفترة المكفولة</p>
-                            <strong>${Orphan.numberOfSponsorShipMonths} أشهر</strong>
+                            <strong>${Orphan.numberOfSponsorShipMonths ?? 0} أشهر</strong>
                         </div>
                         <div class="text-center">
                             <p class="mb-1 text-warning fw-bold">فترة الكفالة المتبقية</p>
-                            <strong>${Orphan.numberOfRemainderSponsorShipMonths} أشهر</strong>
+                            <strong>${Orphan.numberOfRemainderSponsorShipMonths ?? 0} أشهر</strong>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <button class="btn more" onclick="initToggleorphanDetailsModal('${Orphan.code}')">مزيد من التفاصيل</button>
-                        <button class="btn btn-success">تبرع الآن</button>
-                    </div>
+<a class="btn btn-success " href="https://wa.me/+970567092465" target="_blank">
+                                    تبرع الآن
+                                </a>
                 </div>
             </div>
         </div>
