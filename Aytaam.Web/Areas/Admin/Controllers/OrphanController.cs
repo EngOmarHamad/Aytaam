@@ -73,7 +73,7 @@ public class OrphanController(IMapper mapper, UserManager<Account> userManager, 
             if (item.Sponsorships != null && item.Sponsorships.Count != 0)
             {
                 var s = item.Sponsorships.Select(x => x.SponsorshipType).ToList();
-                if (s.Contains(SponsorshipType.Full))
+                if (s.Contains(SponsorshipType2.Full))
                 {
                     sposership = SponsorshipType.Full;
                 }
@@ -128,39 +128,16 @@ public class OrphanController(IMapper mapper, UserManager<Account> userManager, 
     }
 
     [HttpPost]
-    [ApiExplorerSettings(IgnoreApi = true)]
-    public async Task<ActionResult> RenderOrphanDetailsAsync([FromForm] string id)
+    public async Task<ActionResult> RenderOrphanDetailsAsync(string code)
     {
-        OrphanDto item = new();
-        if (id != null)
+        if (code != null)
         {
-            var user = await orphanService.GetAsync(id);
-            if (user != null)
+            var orphan = await orphanService.GetOrphanAsync(code);
+            if (orphan != null)
             {
-                item = _mapper.Map<OrphanDto>(user);
+                return PartialView("Partials/Orphan/OrphanDetails", orphan);
             }
         }
-        return PartialView("Partials/Account/OrphanDetails", item);
+        return NotFound();
     }
-
-    [HttpPost]
-    [ApiExplorerSettings(IgnoreApi = true)]
-    public async Task<IActionResult> RenderAddOrUpdateOrphanAsync(string id)
-    {
-
-        var orphanDto = new InputOrphanDto();
-
-        if (id != null)
-        {
-            orphanDto = await orphanService.GetAsync(id);
-            if (orphanDto == null)
-            {
-                return NotFound();
-            }
-        }
-        orphanDto.OrphanTypes = EnumsHelper.GetListOrphanTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() }).ToList();
-        return PartialView("Partials/Account/AddOrUpdateOrphan", orphanDto);
-    }
-
-
 }

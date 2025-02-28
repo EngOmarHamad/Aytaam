@@ -55,8 +55,8 @@ namespace Aytaam.Data
                     {
                     new() {
                         FullName = "System Administrator",
-                        UserName = "admin@test.com",
-                        Email = "admin@test.com",
+                        UserName = "Admin@Aytaam.org",
+                        Email = "Admin@Aytaam.org",
                         ImagePath = "/assets/media/svg/files/blank-image.svg",
                         EmailConfirmed = true,
                         PhoneNumberConfirmed = true,
@@ -66,7 +66,7 @@ namespace Aytaam.Data
 
                     foreach (var user in users)
                     {
-                        var createOrphanResult = await userManager.CreateAsync(user, "Admin@123456");
+                        var createOrphanResult = await userManager.CreateAsync(user, "Admin262");
                         if (createOrphanResult.Succeeded)
                         {
 

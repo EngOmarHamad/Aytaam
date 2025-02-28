@@ -6,7 +6,8 @@ public interface IOrphanService
 {
     Task<List<Orphan>> GetAllAsync();
     Task<List<Orphan>> GetAllAsync(OrphanQueryDto query);
-    Task<InputOrphanDto> GetAsync(string id);
+    Task<InputOrphanDto> GetAsync(string code);
+    Task<OrphanDto?> GetOrphanAsync(string code);
     Task<int> GetCountAsync();
     Task<string> GetOrphanFullNameAsync(string Id);
     Task<string?> CreateAsync(InputOrphanDto input);

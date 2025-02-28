@@ -3,9 +3,10 @@ using Aytaam.Core.ViewModels.Orphans;
 using Aytaam.Infrastructure.Services.Orphans;
 
 namespace Aytaam.Web.Controllers;
-public class HomeController(IOrphanService orphanService) : Controller
+public class HomeController(IOrphanService orphanService, IMapper mapper) : Controller
 {
     private readonly IOrphanService _orphanService = orphanService;
+    private readonly IMapper mapper = mapper;
 
     [Route("/")]
     public IActionResult Index()
@@ -16,6 +17,19 @@ public class HomeController(IOrphanService orphanService) : Controller
             SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
             AgeGroups = [.. EnumsHelper.GetListAgeGroups().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
         });
+    }
+    [HttpPost]
+    public async Task<ActionResult> RenderOrphanDetailsAsync(string code)
+    {
+        if (code != null)
+        {
+            var orphan = await orphanService.GetOrphanAsync(code);
+            if (orphan != null)
+            {
+                return PartialView("Partials/Orphan/OrphanDetails", orphan);
+            }
+        }
+        return NotFound();
     }
     public IActionResult Privacy()
     {
@@ -62,8 +76,8 @@ public class HomeController(IOrphanService orphanService) : Controller
                     Amount = p.Sponsorships?.Sum(s => s.Amount),
                     NumberOfSponsorShipMonths = totalMonths,
                     NumberOfRemainderSponsorShipMonths = passedMonths,
-                    ProgressPercentage = progressPercentage == 0 ? 10 : progressPercentage
-
+                    ProgressPercentage = progressPercentage == 0 ? 10 : progressPercentage,
+                    Age = OrphanService.CalculateAge(p.DateOfBirth)
 
                 };
                 return dto;

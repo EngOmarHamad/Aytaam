@@ -9,8 +9,6 @@
 <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" asp-append-version="true" />
 @section PageHeader {
     <div class="d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
-
-
         <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
             <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-15">
                 <br />
@@ -22,6 +20,12 @@
     </div>
 
 }
+<style>
+    .more {
+        color: var(--bs-success);
+        background-color: var(--bs-success-light);
+    }
+</style>
 
 
 
@@ -31,7 +35,7 @@
         <h1>الأيتام</h1>
         <div class=" row align-items-center border-0 pt-6">
             <div class="card-title mx-0 my-1 d-block  ">
-                <div class="row row-cols-4">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
                     <div class="d-flex col align-items-center position-relative my-1">
                         <span class="svg-icon svg-icon-1 position-absolute ms-6">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +43,7 @@
                                 <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
                             </svg>
                         </span>
-                        <input data-kt-orphan-table-filter="search" id="searchTearm" class="form-control form-control-solid w-100 ps-14 fw-bold" data-bs-toggle="tooltip" title=" بحث من خلال الاسم أو كود اليتيم " placeholder="  بحث من خلال الاسم أو كود اليتيم " />
+                        <input id="searchTearmInput" class="form-control form-control-solid w-100 ps-14 fw-bold" data-bs-toggle="tooltip" title=" بحث من خلال الاسم أو كود اليتيم " placeholder="  بحث من خلال الاسم أو كود اليتيم " />
                     </div>
                     <div class="col my-1">
                         <select class="form-select form-select-solid fw-bold" id="OrphanTypeFilter"
@@ -64,7 +68,7 @@
         </div>
 
     </div>
-    <div class="row row-cols-1 row-cols-md-2  row-cols-lg-4" id="orphans">
+    <div class="row row-cols-1 row-cols-md-2  row-cols-xl-4" id="orphans">
         <div class="col p2 ">
             <div class="card text-center mx-auto mt-5" style="width: 22rem;">
                 <div class="position-relative">
@@ -87,7 +91,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <button class="btn btn-primary">مزيد من التفاصيل</button>
+                        <button class="btn btn-primary" onclick="initToggleorphanDetailsModal('${Orphan.code}')">مزيد من التفاصيل</button>
                         <button class="btn btn-success">تبرع الآن</button>
                     </div>
                 </div>
@@ -117,29 +121,10 @@
     <script src="~/assets/plugins/custom/intl-tel-input/js/intltelinput-jquery.min.js"></script>
     <script src="~/assets/js/custom/landing.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/custom/fslightbox/fslightbox.bundle.js" asp-append-version="true"></script>
-    @*     <script src="~/assets/js/custom/boardads/boarddetail.js" asp-append-version="true"></script>
- *@    <script src="~/assets/js/custom/orphan/orphanmodel.js" asp-append-version="true"></script>
+@*     <script src="~/assets/js/custom/boardads/boarddetail.js" asp-append-version="true"></script>*@
+    <script src="~/assets/js/custom/orphan/orphanmodel.js" asp-append-version="true"></script>
     <script src="~/assets/js/custom/Pagination.js" asp-append-version="true"></script>
     <script src="~/assets/js/custom/orphan/orphanmodelapp.js" asp-append-version="true"></script>
-    <script>
-        // function ShowShareModel(Id) {
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: '/BoardAds/RenderShareTypeBoard',
-        //         data: { Id },
-        //         success: function (layout) {
-        //             if (layout.status == 0) toastr.error(layout.msg);
-        //             else {
-        //                 $("#kt_modal_baseModel").html(layout);
-        //                 $("#kt_modal_baseModel").modal("show");
-        //             }
-        //         },
-        //         error: function (xhr, status, error) {
-        //             console.log(error)
-        //             console.log(xhr)
-        //             console.log(status)
-        //         }
-        //     });
-        // }
-    </script>
+    <script src="~/assets/js/custom/orphan/orphandetail.js" asp-append-version="true"></script>
+
 }

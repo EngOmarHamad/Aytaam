@@ -260,6 +260,12 @@
                         <input type="file" class="form-control" name="GuardianCertificate" asp-for="Dto.GuardianCertificate" id="GuardianCertificate" />
 
                     </div>
+                    @if (!string.IsNullOrEmpty(Model.Dto?.DeathCertificatePath))
+                    {
+                        <a href="@Url.Content(Model.Dto.BirthCertificatePath)" class="btn btn-primary mt-2" download>
+                            تحميل شهادة الوصي
+                        </a>
+                    }
                 </div>
             </div>
             <div class="row fv-row mb-7">
@@ -274,6 +280,12 @@
                         <input type="file" class="form-control" name="DeathCertificate" asp-for="Dto.DeathCertificate" id="DeathCertificate" />
 
                     </div>
+                    @if (!string.IsNullOrEmpty(Model.Dto?.DeathCertificatePath))
+                    {
+                        <a href="@Url.Content(Model.Dto.DeathCertificatePath)" class="btn btn-primary mt-2" download>
+                            تحميل شهادة الوفاة
+                        </a>
+                    }
                 </div>
             </div>
             <div class="row fv-row mb-7">
@@ -288,6 +300,12 @@
                         <input class="form-control" name="BirthCertificate" asp-for="Dto.BirthCertificate" id="BirthCertificate" />
 
                     </div>
+                    @if (!string.IsNullOrEmpty(Model.Dto?.DeathCertificatePath))
+                    {
+                        <a href="@Url.Content(Model.Dto.BirthCertificatePath)" class="btn btn-primary mt-2" download>
+                            تحميل شهادة الميلاد
+                        </a>
+                    }
                 </div>
             </div>
 

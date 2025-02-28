@@ -27,49 +27,97 @@ var KTSponsorshipsAddSponsorship = function () {
                     'OrphanCode': {
                         validators: {
                             notEmpty: {
-                                message: ' حدد اليتيم'
+                                message: 'حدد اليتيم'
+                            },
+                            regexp: {
+                                message: 'الرجاء إدخال رمز يتيم صالح (لا يجب أن يكون رقمًا)',
+                                regexp: /^[^0-9]+$/
                             }
                         }
                     },
                     'SponsorName': {
                         validators: {
                             notEmpty: {
-                                message: ' حدد المتكفل'
+                                message: 'حدد المتكفل'
+                            },
+                            stringLength: {
+                                min: 3,
+                                message: 'اسم المتكفل يجب أن يكون على الأقل 3 أحرف'
+                            },
+                            regexp: {
+                                message: 'الاسم لا يجب أن يحتوي على أرقام',
+                                regexp: /^[^0-9]+$/
                             }
                         }
                     },
                     'Amount': {
                         validators: {
                             notEmpty: {
-                                message: ' حدد المبلغ'
+                                message: 'حدد المبلغ'
+                            },
+                            numeric: {
+                                message: 'الرجاء إدخال مبلغ صحيح'
+                            },
+                            greaterThan: {
+                                value: 0,
+                                message: 'المبلغ يجب أن يكون أكبر من 0'
                             }
                         }
                     },
                     'StartDate': {
                         validators: {
                             notEmpty: {
-                                message: ' حدد بدايتها'
-                            }
-                        }
-                    }, 'EndDate': {
-                        validators: {
-                            notEmpty: {
-                                message: ' حدد نهايتها'
-                            }
-                        }
-                    }, 'SponsorshipType': {
-                        validators: {
-                            notEmpty: {
-                                message: ' نوع الكفالة'
+                                message: 'حدد بدايتها'
+                            },
+                            date: {
+                                format: 'YYYY-MM-DD',
+                                message: 'الرجاء إدخال تاريخ صالح'
+                            },
+                            callback: {
+                                message: 'تاريخ البداية يجب أن يكون قبل اليوم',
+                                callback: function (input) {
+                                    var startDate = new Date(input.value);
+                                    var today = new Date();
+                                    today.setHours(0, 0, 0, 0); // تصفير الوقت ليتم مقارنة التاريخ فقط
+                                    return startDate < today; // التأكد من أن تاريخ البداية قبل اليوم
+                                }
                             }
                         }
                     },
+                    'EndDate': {
+                        validators: {
+                            notEmpty: {
+                                message: 'حدد نهايتها'
+                            },
+                            date: {
+                                format: 'YYYY-MM-DD',
+                                message: 'الرجاء إدخال تاريخ صالح'
+                            },
+                            callback: {
+                                message: 'تاريخ النهاية يجب أن يكون بعد تاريخ البداية',
+                                callback: function (input) {
+                                    var startDate = form.querySelector('[name="StartDate"]').value;
+                                    var endDate = input.value;
+                                    if (startDate && endDate) {
+                                        return new Date(endDate) > new Date(startDate);
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
+                    },
+                    'SponsorshipType': {
+                        validators: {
+                            notEmpty: {
+                                message: 'حدد نوع الكفالة'
+                            }
+                        }
+                    }
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     bootstrap: new FormValidation.plugins.Bootstrap5({
                         rowSelector: '.fv-row',
-
                     })
                 }
             }

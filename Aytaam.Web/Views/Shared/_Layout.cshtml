@@ -21,6 +21,7 @@
     @*<link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>*@
     <link type="text/css" href="~/assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" asp-append-version="true">
     <link type="text/css" href="~/assets/css/style.bundle.rtl.css" rel="stylesheet" asp-append-version="true">
+    <link type="text/css" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" asp-append-version="true" />
     <title> أيتام</title>
     @await RenderSectionAsync("Styles", false)
 </head>
@@ -52,10 +53,11 @@
 
                                     <div class="menu menu-title-gray-500 menu-state-title-success fs-5 menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" data-kt-menu="true">
                                         <div class="menu-item">
-                                            <a class="menu-link nav-link active py-3 px-4 px-xxl-6" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" asp-action="Index" asp-controller="Home">الرئيسية</a>
+
+                                            <a class='menu-link nav-link @((Context.Request.Path.ToString().Contains("/")&&!Context.Request.Path.ToString().Contains("AboutUs"))?"active":"") py-3 px-4 px-xxl-6' data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" asp-action="Index" asp-controller="Home">الرئيسية</a>
                                         </div>
                                         <div class="menu-item">
-                                            <a class="menu-link nav-link py-3 px-4 px-xxl-6" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" asp-controller="AboutUs" asp-action="Index">من نحن</a>
+                                            <a class='menu-link nav-link @((Context.Request.Path.ToString().Contains("AboutUs"))?"active":"") py-3 px-4 px-xxl-6' data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" asp-controller="AboutUs" asp-action="Index">من نحن</a>
                                         </div>
 
 

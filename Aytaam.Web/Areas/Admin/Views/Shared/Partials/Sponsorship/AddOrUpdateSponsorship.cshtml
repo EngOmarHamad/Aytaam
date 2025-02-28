@@ -1,12 +1,21 @@
 ﻿@using Aytaam.Core.Dtos.Sponsorships
 @model InputSponsorshipDto
+<style>
+    .flatpickr-wrapper {
+        width: 100% !important;
+    }
+
+    .flatpickr-input {
+        width: 100% !important;
+    }</style>
+
 
 <!--begin::Modal dialog-->
 
 <div class="modal-dialog modal-dialog-centered mw-950px">
 
     <div class="modal-content">
-        <div class="modal-header" id="kt_modal_addOrUpdate_sponsorship_header">
+        <div class="modal-header  bg-success text-white" id="kt_modal_addOrUpdate_sponsorship_header">
             <h2 class="fw-bold">@((Model.Id == null || Model.Id == "") ? "إضافة كفالة" : "تعديل كفالة")</h2>
             <div class="btn btn-icon btn-sm btn-active-icon-success" data-kt-sponsorships-modal-action="close">
                 <span class="svg-icon svg-icon-1">

@@ -54,6 +54,58 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
         var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code);
         return user == null ? null : _mapper.Map<InputOrphanDto>(user);
     }
+    public static int? CalculateAge(DateTime? dateOfBirth)
+    {
+        var today = DateTime.Today;
+        var age = today.Year - dateOfBirth?.Year ?? 0;
+
+        // التحقق مما إذا كان عيد الميلاد قد مر خلال هذه السنة أم لا
+        if (dateOfBirth?.Date > today.AddYears(-age))
+        {
+            age--;
+        }
+
+        return age;
+    }
+    public async Task<OrphanDto?> GetOrphanAsync(string code)
+    {
+        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code);
+        if (user is not null)
+        {
+            var EndDate = user.Sponsorships?.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.EndDate;
+            var StartDate = user.Sponsorships?.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.StartDate;
+            int? totalMonths = ((EndDate?.Year - StartDate?.Year) * 12) + (EndDate?.Month - StartDate?.Month);
+            int? passedMonths = ((DateTime.Today.Year - StartDate?.Year) * 12) + (DateTime.Today.Month - StartDate?.Month);
+            double? progressPercentage = totalMonths > 0 ? (passedMonths / (double)totalMonths) * 100 : 0;
+            OrphanDto dto = new()
+            {
+                Code = user.Code,
+                FullName = user.FullName,
+                NationalIdNumber = user.NationalIdNumber,
+                WhatsApp = user.WhatsApp,
+                MedicalCondition = user.MedicalCondition,
+                Residence = user.Residence,
+                DateOfBirth = user.DateOfBirth,
+                NumberOfSiblings = user.NumberOfSiblings,
+                OrphanType = user.OrphanType,
+                TotalFamilyMembers = user.TotalFamilyMembers,
+                GuardianRelation = user.GuardianRelation,
+                GuardianName = user.GuardianName,
+                Notes = user.Notes,
+                ImagePath = user.ImagePath,
+                Amount = user.Sponsorships?.Sum(s => s.Amount),
+                NumberOfSponsorShipMonths = totalMonths,
+                NumberOfRemainderSponsorShipMonths = passedMonths,
+                ProgressPercentage = progressPercentage == 0 ? 10 : progressPercentage,
+                Age = CalculateAge(user.DateOfBirth)
+
+
+            };
+            return dto;
+        }
+        return null;
+    }
+
 
     public async Task<string> GetOrphanFullNameAsync(string code)
     {

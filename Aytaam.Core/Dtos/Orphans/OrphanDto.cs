@@ -27,5 +27,6 @@
         public double? ProgressPercentage { get; set; }
         public int? NumberOfSponsorShipMonths { get; set; }
         public int? NumberOfRemainderSponsorShipMonths { get; set; }
+        public int? Age { get; set; }
     }
 }

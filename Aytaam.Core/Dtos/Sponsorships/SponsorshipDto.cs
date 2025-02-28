@@ -8,7 +8,7 @@ public class SponsorshipDto
     public int? Duration { get; set; } // مدتها بالأشهر
     public decimal? Amount { get; set; } // المبلغ
     public string? SponsorName { get; set; } // اسم المتكفل
-    public SponsorshipType? SponsorshipType { get; set; } // نوع الكفالة
+    public SponsorshipType2? SponsorshipType { get; set; } // نوع الكفالة
     public int? RemainingPeriod { get; set; } // الفترة المتبقية بالأشهر
     public string? Notes { get; set; } // ملاحظات
 

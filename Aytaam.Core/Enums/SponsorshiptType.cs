@@ -13,4 +13,12 @@ public enum SponsorshipType
     [Description("غير مكفول")]
     UnSponsored
 }
+public enum SponsorshipType2
+{
+    [Description("كلية")]
+    Full,
+
+    [Description("جزئية")]
+    Partial,
+}
 

@@ -34,7 +34,7 @@ public class SponsorshipController : BaseController<SponsorshipController>
             return View(new SponsorshipsIndexViewModel()
             {
                 OrphanNames = [.. (await _orphanService.ListAsync()).Select(o => new SelectListItem() { Text = o.Name, Value = o.Id })],
-                SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
+                SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipType2s().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })],
             });
         }
         catch (Exception)
@@ -110,7 +110,6 @@ public class SponsorshipController : BaseController<SponsorshipController>
                 EndDate = SponsorshipDto.EndDate,
                 StartDate = SponsorshipDto.StartDate,
                 Amount = SponsorshipDto.Amount,
-                Duration = SponsorshipDto.Duration,
                 SponsorshipType = SponsorshipDto.SponsorshipType,
                 OrphanCode = SponsorshipDto.OrphanCode
 
@@ -141,7 +140,7 @@ public class SponsorshipController : BaseController<SponsorshipController>
 
             }
         }
-        item.SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipTypes().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })];
+        item.SponsorshipTypes = [.. EnumsHelper.GetListSponsorshipType2s().Select(X => new SelectListItem() { Text = X.Item2, Value = X.Item1.ToString() })];
         item.OrphanNames = [.. (await _orphanService.GetAllAsync()).Select(X => new SelectListItem() { Text = X.FullName, Value = X.Code.ToString() })];
         return PartialView("Partials/Sponsorship/AddOrUpdateSponsorship", item);
     }

@@ -122,8 +122,8 @@
     --bs-focus-ring-width: 0.25rem;
     --bs-focus-ring-opacity: 0.25;
     --bs-focus-ring-color: rgba(62, 151, 255, 0.25);
-    --bs-form-valid-color: #50cd89;
-    --bs-form-valid-border-color: #50cd89;
+    --bs-form-valid-color: #017960;
+    --bs-form-valid-border-color: #017960;
     --bs-form-invalid-color: #f1416c;
     --bs-form-invalid-border-color: #f1416c
 }
@@ -3780,8 +3780,8 @@ fieldset:disabled .btn {
 
 .btn-success {
     --bs-btn-color: #000000;
-    --bs-btn-bg: #50cd89;
-    --bs-btn-border-color: #50cd89;
+    --bs-btn-bg: #017960;
+    --bs-btn-border-color: #017960;
     --bs-btn-hover-color: #000000;
     --bs-btn-hover-bg: #6ad59b;
     --bs-btn-hover-border-color: #62d295;
@@ -3791,8 +3791,8 @@ fieldset:disabled .btn {
     --bs-btn-active-border-color: #62d295;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     --bs-btn-disabled-color: #000000;
-    --bs-btn-disabled-bg: #50cd89;
-    --bs-btn-disabled-border-color: #50cd89
+    --bs-btn-disabled-bg: #017960;
+    --bs-btn-disabled-border-color: #017960
 }
 
 .btn-info {
@@ -3915,19 +3915,19 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-success {
-    --bs-btn-color: #50cd89;
-    --bs-btn-border-color: #50cd89;
+    --bs-btn-color: #017960;
+    --bs-btn-border-color: #017960;
     --bs-btn-hover-color: #000000;
-    --bs-btn-hover-bg: #50cd89;
-    --bs-btn-hover-border-color: #50cd89;
+    --bs-btn-hover-bg: #017960;
+    --bs-btn-hover-border-color: #017960;
     --bs-btn-focus-shadow-rgb: 80, 205, 137;
     --bs-btn-active-color: #000000;
-    --bs-btn-active-bg: #50cd89;
-    --bs-btn-active-border-color: #50cd89;
+    --bs-btn-active-bg: #017960;
+    --bs-btn-active-border-color: #017960;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #50cd89;
+    --bs-btn-disabled-color: #017960;
     --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #50cd89;
+    --bs-btn-disabled-border-color: #017960;
     --bs-gradient: none
 }
 
@@ -34473,7 +34473,7 @@ fieldset:disabled .btn {
     --bs-light: #F9F9F9;
     --bs-primary: #3E97FF;
     --bs-secondary: #DBDFE9;
-    --bs-success: #50cd89;
+    --bs-success: #017960;
     --bs-info: #7239ea;
     --bs-success: #017960;
     --bs-danger: #f1416c;
@@ -34512,7 +34512,7 @@ fieldset:disabled .btn {
     --bs-text-primary: #3E97FF;
     --bs-text-secondary: #DBDFE9;
     --bs-text-light: #F9F9F9;
-    --bs-text-success: #50cd89;
+    --bs-text-success: #017960;
     --bs-text-info: #7239ea;
     --bs-text-warning: #017960;
     --bs-text-danger: #f1416c;
@@ -34620,7 +34620,7 @@ fieldset:disabled .btn {
     --bs-white: #ffffff;
     --bs-light: #2B2B40;
     --bs-primary: #3E97FF;
-    --bs-success: #50cd89;
+    --bs-success: #017960;
     --bs-info: #7239ea;
     --bs-success: #017960;
     --bs-danger: #f1416c;
@@ -34662,7 +34662,7 @@ fieldset:disabled .btn {
     --bs-text-primary: #3E97FF;
     --bs-text-secondary: #323248;
     --bs-text-light: #2B2B40;
-    --bs-text-success: #50cd89;
+    --bs-text-success: #017960;
     --bs-text-info: #7239ea;
     --bs-text-warning: #017960;
     --bs-text-danger: #f1416c;
@@ -35433,7 +35433,7 @@ h6 {
 
         .separator.separator-content.border-success::after,
         .separator.separator-content.border-success::before {
-            border-color: #50cd89 !important
+            border-color: #017960 !important
         }
 
         .separator.separator-content.border-info::after,
@@ -55183,7 +55183,7 @@ label.rating-label:hover ~ .rating-label {
 
     .explore-btn-outline.active,
     .explore-btn-outline:hover {
-        border: 1px dashed #50cd89 !important;
+        border: 1px dashed #017960 !important;
         background-color: #e8fff3
     }
 
@@ -55200,7 +55200,7 @@ label.rating-label:hover ~ .rating-label {
 }
 
 .explore-icon-success {
-    color: #50cd89
+    color: #017960
 }
 
 .explore-icon-danger {
@@ -55214,7 +55214,7 @@ label.rating-label:hover ~ .rating-label {
 
 .explore-label-pro {
     color: #fff;
-    background-color: #50cd89
+    background-color: #017960
 }
 
 .app-engage {

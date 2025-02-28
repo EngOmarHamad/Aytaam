@@ -28,6 +28,8 @@
     <link rel="shortcut icon" href="~/assets/Images/Logo.png" asp-append-version="true" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gulzar&display=swap" rel="stylesheet">
+
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link type="text/css" href="~/assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" asp-append-version="true">
@@ -327,8 +329,7 @@
     <script src="~/assets/js/scripts.bundle.js" asp-append-version="true"></script>
     <script src="~/assets/js/widgets.bundle.js"></script>
     <script src="~/assets/js/custom/widgets.js"></script>
-
-
+    <script src="~/lib/jquery.inputmask.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         var kt_app_sidebar_toggle = document.getElementById("kt_app_sidebar_toggle");

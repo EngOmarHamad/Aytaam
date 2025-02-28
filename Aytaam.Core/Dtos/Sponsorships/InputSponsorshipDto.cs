@@ -20,7 +20,7 @@ public class InputSponsorshipDto
     public string? SponsorName { get; set; }
 
     [Display(Name = "نوع الكفالة")]
-    public SponsorshipType? SponsorshipType { get; set; }
+    public SponsorshipType2? SponsorshipType { get; set; }
 
     [Display(Name = "الفترة المتبقية (بالأشهر)")]
     public int? RemainingPeriod { get; set; }

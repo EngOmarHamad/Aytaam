@@ -43,7 +43,6 @@
 
 	<ItemGroup>
 	  <Folder Include="TempEmails\" />
-	  <Folder Include="Views\Shared\Partials\Home\" />
 	</ItemGroup>
 
 </Project>

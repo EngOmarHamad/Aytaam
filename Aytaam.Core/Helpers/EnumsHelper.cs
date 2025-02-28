@@ -34,6 +34,16 @@ public static class EnumsHelper
         }
         return values;
     }
+    public static List<(int, string)> GetListSponsorshipType2s()
+    {
+        Array enumvalues = Enum.GetValues<SponsorshipType2>();
+        List<(int, string)> values = [];
+        foreach (var userType in enumvalues)
+        {
+            values.Add(((int)userType, GetDescription(userType, "")));
+        }
+        return values;
+    }
     public static string GetDescription(object enumValue, string defDesc)
     {
         FieldInfo? fi = enumValue.GetType().GetField(enumValue.ToString());
