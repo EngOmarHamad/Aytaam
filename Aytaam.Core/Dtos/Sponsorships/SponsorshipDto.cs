@@ -3,8 +3,8 @@
 public class SponsorshipDto
 {
     public string? Id { get; set; }
-    public DateTime? StartDate { get; set; } // تاريخ البداية
-    public DateTime? EndDate { get; set; } // تاريخ النهاية
+    public string? StartDate { get; set; } // تاريخ البداية
+    public string? EndDate { get; set; } // تاريخ النهاية
     public int? Duration { get; set; } // مدتها بالأشهر
     public decimal? Amount { get; set; } // المبلغ
     public string? SponsorName { get; set; } // اسم المتكفل

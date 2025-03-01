@@ -7,14 +7,20 @@ public class MappingProfile : Profile
     {
         #region Orphans
 
-        CreateMap<Orphan, OrphanDto>().ReverseMap();
+        CreateMap<Orphan, OrphanDto>().
+            ForMember(x => x.DateOfBirth, x => x.MapFrom(x => $"{x.DateOfBirth.GetDate(new System.Globalization.CultureInfo("ar-EG"), "dd, MMMM, yyyy")}" ?? null))
+
+            .ReverseMap();
 
         CreateMap<Orphan, InputOrphanDto>().ReverseMap();
 
         #endregion
         #region Sponsorships
 
-        CreateMap<Sponsorship, SponsorshipDto>().ReverseMap();
+        CreateMap<Sponsorship, SponsorshipDto>()
+            .ForMember(x => x.StartDate, x => x.MapFrom(x => $"{x.StartDate.GetDate(new System.Globalization.CultureInfo("ar-EG"), "dd, MMMM, yyyy")}" ?? null))
+            .ForMember(x => x.EndDate, x => x.MapFrom(x => $"{x.EndDate.GetDate(new System.Globalization.CultureInfo("ar-EG"), "dd, MMMM, yyyy")}" ?? null))
+.ReverseMap();
         CreateMap<Sponsorship, InputSponsorshipDto>().ReverseMap();
 
         //CreateMap<Sponsorship, InputSponsorshipDto>()

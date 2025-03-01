@@ -69,13 +69,13 @@ var KTSponsorshipsList = function () {
                     var badgeText = "";
 
                     if (row.sponsorshipType == 1) {
-                        badgeClass = "badge bg-success";
+                        badgeClass = "badge bg-success text-white";
                         badgeText = "جزئية";
                     } else if (row.sponsorshipType == 0) {
-                        badgeClass = "badge bg-danger";
+                        badgeClass = "badge bg-danger text-white";
                         badgeText = "كلية";
                     } else if (row.sponsorshipType == 2) {
-                        badgeClass = "badge bg-secondary";
+                        badgeClass = "badge bg-secondary text-white";
                         badgeText = "غير مكفول ";
                     }
 

@@ -13,8 +13,6 @@ var KTAddOrphan = function () {
         });
 
 
-
-
         // Form validation
         var validation;
         var _form = document.getElementById('kt_add_orphan_form');
@@ -193,6 +191,38 @@ var KTAddOrphan = function () {
             }
         );
 
+
+        try {
+            let ImagePath = $("#ImagePath").val();
+            let BirthCertificatePath = $("#BirthCertificatePath").val();
+            let DeathCertificatePath = $("#DeathCertificatePath").val();
+            let GuardianCertificatePath = $("#GuardianCertificatePath").val();
+
+            if (!ImagePath) {
+                validation.enableValidator('Image');
+            } else {
+                validation.disableValidator('Image');
+            }
+            if (!BirthCertificatePath) {
+                validation.enableValidator('BirthCertificate');
+            } else {
+                validation.disableValidator('BirthCertificate');
+            }
+            if (!DeathCertificatePath) {
+                validation.enableValidator('DeathCertificate');
+            } else {
+                validation.disableValidator('DeathCertificate');
+            }
+            if (!GuardianCertificatePath) {
+                validation.enableValidator('GuardianCertificate');
+            } else {
+                validation.disableValidator('GuardianCertificate');
+            }
+
+        }
+        catch (e) {
+            console.log(e.message)
+        }
         console.log(validation)
 
         submitButton.addEventListener('click', function (e) {
@@ -209,6 +239,10 @@ var KTAddOrphan = function () {
                     console.log($('#OrphanType').val())
 
                     fromdata.append("Code", $('#Code').val());
+                    fromdata.append("ImagePath", $("#ImagePath").val());
+                    fromdata.append("BirthCertificatePath", $("#BirthCertificatePath").val());
+                    fromdata.append("DeathCertificatePath", $("#DeathCertificatePath").val());
+                    fromdata.append("GuardianCertificatePath", $("#GuardianCertificatePath").val());
                     fromdata.append("NationalIdNumber", $('#NationalIdNumber').val());
                     fromdata.append("FullName", $('#FullName').val());
                     fromdata.append("OrphanType", $('#OrphanType').val());

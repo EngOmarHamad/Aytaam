@@ -58,10 +58,13 @@ var KTSponsorshipsAddSponsorship = function () {
                             numeric: {
                                 message: 'الرجاء إدخال مبلغ صحيح'
                             },
-                            greaterThan: {
-                                value: 0,
-                                message: 'المبلغ يجب أن يكون أكبر من 0'
+                            regexp: {
+                                message: 'المبلغ يجب أن يكون أكبر من 0', regexp: /^[0-9]+$/
                             }
+                            //greaterThan: {
+                            //    value: 0,
+                            //    message: 'المبلغ يجب أن يكون أكبر من 0'
+                            //}
                         }
                     },
                     'StartDate': {

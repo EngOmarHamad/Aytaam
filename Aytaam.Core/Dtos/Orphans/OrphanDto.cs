@@ -9,7 +9,7 @@
         [Display(Name = "الاسم كامل")]
         public string? FullName { get; set; }
         public string? WhatsApp { get; set; }
-        public DateTime? DateOfBirth { get; set; } // تاريخ الميلاد
+        public string? DateOfBirth { get; set; } // تاريخ الميلاد
         public string? Residence { get; set; } // السكن
         public string? MedicalCondition { get; set; } // الحالة الطبية
         public string? ImagePath { get; set; } = "/assets/media/svg/files/blank-image.svg"; // صورة شخصية

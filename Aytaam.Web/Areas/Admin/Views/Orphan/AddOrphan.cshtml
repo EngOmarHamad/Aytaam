@@ -87,6 +87,7 @@
                             <i class="bi bi-pencil-fill fs-7"></i>
                             <input id="Image" asp-for="Dto.Image" id="Image" name="Image" data-kt-image-input-file="image" accept=".png,.jpg,.jpeg" />
                             <input type="hidden">
+                            <input type="hidden" asp-for="Dto.ImagePath" id="ImagePath" name="ImagePath">
                         </label>
                         <span class="btn btn-icon btn-circle btn-active-color-warning w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar" data-bs-original-title="Cancel avatar" data-kt-initialized="1">
                             <i class="bi bi-x fs-2"></i>
@@ -260,11 +261,13 @@
                         <input type="file" class="form-control" name="GuardianCertificate" asp-for="Dto.GuardianCertificate" id="GuardianCertificate" />
 
                     </div>
-                    @if (!string.IsNullOrEmpty(Model.Dto?.DeathCertificatePath))
+                    @if (!string.IsNullOrEmpty(Model.Dto?.GuardianCertificatePath))
                     {
-                        <a href="@Url.Content(Model.Dto.BirthCertificatePath)" class="btn btn-primary mt-2" download>
+                        <a href="@Url.Content(Model.Dto.GuardianCertificatePath)" class="btn btn-primary mt-2" download>
                             تحميل شهادة الوصي
                         </a>
+                        <input hidden name="GuardianCertificatePath" asp-for="Dto.GuardianCertificatePath" id="GuardianCertificatePath" />
+
                     }
                 </div>
             </div>
@@ -285,6 +288,8 @@
                         <a href="@Url.Content(Model.Dto.DeathCertificatePath)" class="btn btn-primary mt-2" download>
                             تحميل شهادة الوفاة
                         </a>
+                        <input hidden name="DeathCertificatePath" asp-for="Dto.DeathCertificatePath" id="DeathCertificatePath" />
+
                     }
                 </div>
             </div>
@@ -300,11 +305,13 @@
                         <input class="form-control" name="BirthCertificate" asp-for="Dto.BirthCertificate" id="BirthCertificate" />
 
                     </div>
-                    @if (!string.IsNullOrEmpty(Model.Dto?.DeathCertificatePath))
+                    @if (!string.IsNullOrEmpty(Model.Dto?.BirthCertificatePath))
                     {
                         <a href="@Url.Content(Model.Dto.BirthCertificatePath)" class="btn btn-primary mt-2" download>
                             تحميل شهادة الميلاد
                         </a>
+                        <input hidden name="BirthCertificatePath" asp-for="Dto.BirthCertificatePath" id="BirthCertificatePath" />
+
                     }
                 </div>
             </div>
@@ -314,7 +321,8 @@
             <div class="row py-5">
                 <div class="col-md-10 offset-md-2">
                     <div class="d-flex">
-                        <button type="reset" id="kt_add_orphan_cancel" class="btn btn-light me-3">إلغاء</button>
+                        <a asp-action="Index" asp-area="Admin" asp-controller="Orphan" class="btn btn-danger me-3">عودة إلى الجدول</a>
+                        <button type="reset" id="kt_add_orphan_cancel" class="btn btn-light me-3">إعادة ضبط</button>
                         <button type="submit" id="kt_add_orphan_submit" class="btn btn-warning">
                             <span class="indicator-label">حفظ</span>
                             <span class="indicator-progress">

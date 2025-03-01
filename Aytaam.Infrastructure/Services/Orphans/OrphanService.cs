@@ -85,7 +85,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
                 WhatsApp = user.WhatsApp,
                 MedicalCondition = user.MedicalCondition,
                 Residence = user.Residence,
-                DateOfBirth = user.DateOfBirth,
+                DateOfBirth = $"{user.DateOfBirth.GetDate(new System.Globalization.CultureInfo("ar-EG"), "dd, MMMM, yyyy")}",
                 NumberOfSiblings = user.NumberOfSiblings,
                 OrphanType = user.OrphanType,
                 TotalFamilyMembers = user.TotalFamilyMembers,
@@ -173,21 +173,24 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
 
 
         var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == input.Code) ?? throw new InvalidOperationException();
-
         _mapper.Map(input, user);
         if (input.Image != null)
             user.ImagePath = (await _fileService.UploadAsync(input.Image, FolderNames.OrphansImages)).Item1;
+        else
+            user.ImagePath = input.ImagePath;
+        if (input.BirthCertificate != null)
+            user.BirthCertificatePath = (await _fileService.UploadAsync(input.BirthCertificate, FolderNames.OrphansPdfs)).Item1;
+        else
+            user.BirthCertificatePath = input.BirthCertificatePath;
+        if (input.DeathCertificate != null)
+            user.DeathCertificatePath = (await _fileService.UploadAsync(input.DeathCertificate, FolderNames.OrphansPdfs)).Item1;
+        else
+            user.DeathCertificatePath = input.DeathCertificatePath;
+        if (input.GuardianCertificate != null)
+            user.GuardianCertificatePath = (await _fileService.UploadAsync(input.GuardianCertificate, FolderNames.OrphansPdfs)).Item1;
+        else
+            user.GuardianCertificatePath = input.GuardianCertificatePath;
 
-        user.FullName = input.FullName;
-        user.WhatsApp = input.WhatsApp;
-        user.MedicalCondition = input.MedicalCondition;
-        user.Residence = input.Residence;
-        user.DateOfBirth = input.DateOfBirth;
-        user.NumberOfSiblings = input.NumberOfSiblings;
-        user.TotalFamilyMembers = input.TotalFamilyMembers;
-        user.GuardianRelation = input.GuardianRelation;
-        user.GuardianName = input.GuardianName;
-        user.Notes = input.Notes;
         _db.TblOrphans.Update(user);
 
         if (await _db.SaveChangesAsync() == 0)

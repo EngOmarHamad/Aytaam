@@ -65,7 +65,7 @@ public class HomeController(IOrphanService orphanService, IMapper mapper) : Cont
                     WhatsApp = p.WhatsApp,
                     MedicalCondition = p.MedicalCondition,
                     Residence = p.Residence,
-                    DateOfBirth = p.DateOfBirth,
+                    DateOfBirth = $"{p.DateOfBirth.GetDate(new System.Globalization.CultureInfo("ar-EG"), "dd, MMMM, yyyy")}",
                     NumberOfSiblings = p.NumberOfSiblings,
                     OrphanType = p.OrphanType,
                     TotalFamilyMembers = p.TotalFamilyMembers,
