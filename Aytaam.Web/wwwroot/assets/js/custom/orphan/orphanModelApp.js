@@ -1,4 +1,5 @@
-﻿let $OrphansContainer = $("#orphans");
+﻿
+let $OrphansContainer = $("#orphans");
 let $Paging = $("#Paging");
 let $searchTearmInput = $("#searchTearmInput");
 let $OrphanTypeSelect = $("#OrphanTypeFilter");
@@ -30,7 +31,13 @@ async function getdata() {
             if (lstOrphans.listOfData && lstOrphans.listOfData.length > 0) {
                 $NoResult.html("");
                 lstOrphans.listOfData.forEach((p) => RenderCards(p));
-            } else {
+            } else if (lstOrphans.listOfData && lstOrphans.listOfData.length == 0
+                && OrphanTypeSelectValue == "" && SponsorshipTypeSelectValue == "" && AgeGroupSelectValue == "" && searchTearm == ""
+
+            ) {
+                RenderNoData();
+            }
+            else {
                 RenderNoResult();
             }
             RenderPagination(lstOrphans);
@@ -90,12 +97,22 @@ function RenderNoResult() {
                 <i class="bx bx-error-circle text-main" style="font-size: 100px"></i>
                 <h2 class="mb-4 text-main">لا يوجد نتائج</h2>
                 <p class="h4 mb-4">حاول ضبط مرشحات البحث لمزيد من النتائج.</p>
-                <button class="btn btn-main text-white" onclick="getAll()">عرض الكل</button>
+                <button class="btn btn-success" onclick="getAll()">عرض الكل</button>
             </div>
         </div>
     `);
 }
 
+function RenderNoData() {
+    $NoResult.html(`
+        <div class="card shadow-sm my-5 border" style="max-width: 500px">
+            <div class="card-body text-center">
+                <i class="bx bx-error-circle text-main" style="font-size: 100px"></i>
+                <h2 class="mb-4 text-">لا يوجد بيانات حاليا</h2>
+            </div>
+        </div>
+    `);
+}
 $(window).on("offline", function () {
     $OrphansContainer.html("");
     $NoResult.html(`

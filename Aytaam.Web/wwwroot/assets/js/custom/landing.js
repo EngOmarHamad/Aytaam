@@ -22,6 +22,7 @@ var KTLandingPage = function () {
     }
 }();
 
+
 // Webpack support
 if (typeof module !== 'undefined') {
     module.exports = KTLandingPage;
@@ -30,4 +31,5 @@ if (typeof module !== 'undefined') {
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
     KTLandingPage.init();
+
 });
