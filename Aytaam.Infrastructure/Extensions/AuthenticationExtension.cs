@@ -15,7 +15,6 @@ public static class AuthenticationExtension
             config.SignIn.RequireConfirmedEmail = false;
             config.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"; // to accept digits and letters
             config.Lockout.AllowedForNewUsers = true;
-            config.Lockout.MaxFailedAccessAttempts = 5;
             config.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0, 5, 0);
         })
         .AddEntityFrameworkStores<AytaamDbContext>()
