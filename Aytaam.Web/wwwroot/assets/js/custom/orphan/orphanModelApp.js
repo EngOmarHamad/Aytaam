@@ -127,15 +127,18 @@ $(window).on("offline", function () {
 });
 
 function RenderCards(Orphan) {
-    const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 });
-
+    const formatter = new Intl.NumberFormat("ar-PS", {
+        style: "currency",
+        currency: "ILS",
+        minimumFractionDigits: 2
+    });
     let card = $(`
         <div class="col p-2">
             <div class="card text-center mt-5">
                 <div class="position-relative" style="height: 250px;">
                     <img src="${Orphan.imagePath}" class="card-img-top" alt="صورة الطفل" style="height: 250px; object-fit: cover;">
                     <span class="position-absolute bg-dark text-white p-1 rounded" style="top:10px;right:10px">
-                        تكلفة الكفالة: ${formatter.format(Orphan.amount)} ريال
+                        تكلفة الكفالة: ${formatter.format(Orphan.amount)} 
                     </span>
                 </div>
                 <div class="card-body p-3">
