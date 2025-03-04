@@ -13,7 +13,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
     public async Task<List<Orphan>> GetAllAsync() => await _db.TblOrphans.ToListAsync();
     public async Task<List<Orphan>> GetAllAsync(OrphanQueryDto query)
     {
-        var dbQuery = _db.TblOrphans.AsQueryable();
+        var dbQuery = _db.TblOrphans.Include(x => x.Sponsorships).AsQueryable();
         if (!string.IsNullOrWhiteSpace(query.GeneralSearch))
         {
             dbQuery = dbQuery.Where(p =>
@@ -51,7 +51,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
 
     public async Task<InputOrphanDto> GetAsync(string code)
     {
-        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code);
+        var user = await _db.TblOrphans.Include(x => x.Sponsorships).SingleOrDefaultAsync(x => x.Code == code);
         return user == null ? null : _mapper.Map<InputOrphanDto>(user);
     }
     public static int? CalculateAge(DateTime? dateOfBirth)
@@ -69,7 +69,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
     }
     public async Task<OrphanDto?> GetOrphanAsync(string code)
     {
-        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code);
+        var user = await _db.TblOrphans.Include(x => x.Sponsorships).SingleOrDefaultAsync(x => x.Code == code);
         if (user is not null)
         {
             var EndDate = user.Sponsorships?.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.EndDate;
@@ -113,7 +113,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
 
     public async Task<string> GetOrphanFullNameAsync(string code)
     {
-        var fullname = (await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code))?.FullName;
+        var fullname = (await _db.TblOrphans.Include(x => x.Sponsorships).SingleOrDefaultAsync(x => x.Code == code))?.FullName;
         return fullname ?? throw new Exception();
     }
     public async Task<string?> CreateAsync(InputOrphanDto input)
@@ -176,7 +176,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
     {
 
 
-        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == input.Code) ?? throw new InvalidOperationException();
+        var user = await _db.TblOrphans.Include(x => x.Sponsorships).SingleOrDefaultAsync(x => x.Code == input.Code) ?? throw new InvalidOperationException();
         _mapper.Map(input, user);
         if (input.Image != null)
             user.ImagePath = (await _fileService.UploadAsync(input.Image, FolderNames.OrphansImages)).Item1;
@@ -209,7 +209,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
 
     public async Task DeleteAsync(string code)
     {
-        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code) ?? throw new InvalidOperationException();
+        var user = await _db.TblOrphans.Include(x => x.Sponsorships).SingleOrDefaultAsync(x => x.Code == code) ?? throw new InvalidOperationException();
         _db.TblOrphans.Remove(user);
         if (await _db.SaveChangesAsync() == 0)
         {
@@ -221,7 +221,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
 
     public async Task ChangeOrphanTypeAsync(string code, OrphanType orphanType)
     {
-        var user = await _db.TblOrphans.SingleOrDefaultAsync(x => x.Code == code) ?? throw new InvalidOperationException();
+        var user = await _db.TblOrphans.Include(x => x.Sponsorships).SingleOrDefaultAsync(x => x.Code == code) ?? throw new InvalidOperationException();
         user.OrphanType = orphanType;
         _db.TblOrphans.Update(user);
         if (await _db.SaveChangesAsync() == 0)
@@ -234,7 +234,7 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
 
     public async Task<List<BaseViewModel<string>>> ListAsync()
     {
-        var users = _db.TblOrphans.AsQueryable();
+        var users = _db.TblOrphans.Include(x => x.Sponsorships).AsQueryable();
 
         return await users.Select(x => new BaseViewModel<string>()
         {

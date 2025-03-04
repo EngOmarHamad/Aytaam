@@ -16,7 +16,6 @@ builder.Services.AddDbContext<AytaamDbContext>(opts =>
     });
     opts.EnableDetailedErrors();
     opts.EnableSensitiveDataLogging();
-    opts.UseLazyLoadingProxies();
 });
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddSignalR();

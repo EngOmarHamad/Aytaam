@@ -171,7 +171,7 @@ function RenderCards(Orphan) {
     $OrphansContainer.append(card);
 }
 
-function RenderSkeletonCards(count = 6) {
+function RenderSkeletonCards(count = 12) {
     $OrphansContainer.html(""); // Clear previous content
     for (let i = 0; i < count; i++) {
         let card = $(`

@@ -19,7 +19,7 @@ public class Orphan
     public string? Notes { get; set; } // ملاحظات
     public string? WhatsApp { get; set; }
     public OrphanType? OrphanType { get; set; }
-    public virtual List<Sponsorship>? Sponsorships { get; set; }
+    public List<Sponsorship>? Sponsorships { get; set; }
 }
 
 

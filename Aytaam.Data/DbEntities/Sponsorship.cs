@@ -15,7 +15,7 @@ public class Sponsorship
     public string? OrphanCode { get; set; }
     [ForeignKey(nameof(OrphanCode))]
     [JsonIgnore]
-    public virtual Orphan Orphan { get; set; }
+    public Orphan Orphan { get; set; }
     public DateTime? CreatedAt { get; set; } = DateTime.UtcNow; // تاريخ الإنشاء
     public DateTime? UpdatedAt { get; set; } // تاريخ آخر تحديث
 }

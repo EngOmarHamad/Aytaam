@@ -6,12 +6,12 @@ public class SponsorshipService : ISponsorshipService
     public Task<int> GetCountAsync() => _db.TblSponsorships.CountAsync();
     public async Task<List<Sponsorship>> GetAllAsync()
     {
-        var dbQuery = _db.TblSponsorships.OrderByDescending(x => x.CreatedAt).AsQueryable();
+        var dbQuery = _db.TblSponsorships.Include(x => x.Orphan).OrderByDescending(x => x.CreatedAt).AsQueryable();
         return await dbQuery.ToListAsync();
     }
     public async Task<List<Sponsorship>> GetAllAsync(SponsorshipQueryDto query)
     {
-        var dbQuery = _db.TblSponsorships.OrderByDescending(x => x.CreatedAt).AsQueryable();
+        var dbQuery = _db.TblSponsorships.Include(x => x.Orphan).OrderByDescending(x => x.CreatedAt).AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(query.GeneralSearch))
         {
@@ -44,7 +44,7 @@ public class SponsorshipService : ISponsorshipService
     }
     public async Task UpdateAsync(Sponsorship input)
     {
-        var Sponsorship = await _db.TblSponsorships.SingleOrDefaultAsync(x => x.Id == input.Id) ?? throw new();
+        var Sponsorship = await _db.TblSponsorships.Include(x => x.Orphan).SingleOrDefaultAsync(x => x.Id == input.Id) ?? throw new();
         _db.TblSponsorships.Update(input);
         try
         {
@@ -58,7 +58,7 @@ public class SponsorshipService : ISponsorshipService
     }
     public async Task DeleteAsync(string id)
     {
-        var Sponsorship = await _db.TblSponsorships.SingleOrDefaultAsync(x => x.Id == id) ?? throw new();
+        var Sponsorship = await _db.TblSponsorships.Include(x => x.Orphan).SingleOrDefaultAsync(x => x.Id == id) ?? throw new();
         _db.TblSponsorships.Remove(Sponsorship);
         try
         {
