@@ -13,13 +13,12 @@
                 </span>
             </div>
         </div>
-        <div class="modal-body scroll-y  ">
-            <div class="scroll-y me-n7 " id="kt_modal_orphan_details_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_orphan_details_header" data-kt-scroll-wrappers="#kt_modal_orphan_details_scroll" data-kt-scroll-offset="300px">
-
-                <div class="container ">
-                    <div class=" text-center ">
+        <div class="modal-body  ">
+            <div class=" me-n7 px-7" id="kt_modal_orphan_details_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_orphan_details_header" data-kt-scroll-wrappers="#kt_modal_orphan_details_scroll" data-kt-scroll-offset="300px">
+                <div class="m-0">
+                    <div class=" text-center p-4">
                         <h4>أهلًا، أنا <span class="">@Model.FullName</span> وعمري <span class="">@Model.Age سنوات</span></h4>
-                        <p>رقم الحالة: <strong>@Model.Code</strong></p>
+                        <p>كود الحالة: <strong>@Model.Code</strong></p>
                         <p>رقم الهوية: <strong>@Model.NationalIdNumber</strong></p>
                         <p>@Model.FullName يتيم عمره @Model.Age سنوات يعيش في منطقة @Model.Residence، وهو بحاجة إلى أساسيات الغذاء والملبس، بتبرعك له تسهم في كفالته وتخفف من معاناته.</p>
 
@@ -27,13 +26,13 @@
                             <div class="col-md-6 mb-3">
                                 <div class="card">
                                     <p>الفترة المكفولة</p>
-                                    <h5 class="">@(Model.NumberOfSponsorShipMonths ?? 0) أشهر</h5>
+                                    <h5 class="">@Model.NumberOfSponsorShipMonths أشهر</h5>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="card">
                                     <p>فترة الكفالة المتبقية</p>
-                                    <h5 class="">@(Model.NumberOfRemainderSponsorShipMonths ?? 0) أشهر</h5>
+                                    <h5 class="">@Model.NumberOfRemainderSponsorShipMonths أشهر</h5>
                                 </div>
                             </div>
                         </div>
@@ -74,27 +73,44 @@
                                 </div>
                             </div>
                         </div>
-                        @if (@Model.Notes is not null)
-                        {
 
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <p>ملاحظات</p>
-                                        <h5 class="">@Model.Notes</h5>
-                                    </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <p>ملاحظات</p>
+                                    <h5 class="">@Model.Notes</h5>
                                 </div>
                             </div>
-                        }
+                        </div>
 
-                        <a class="btn btn-success mt-3" href="https://wa.me/+970567092465" target="_blank">
-                            تبرع الآن
-                        </a>
+
+                        <div class="d-flex flex-wrap justify-content-center  ">
+                            @if (!string.IsNullOrEmpty(Model.GuardianCertificatePath))
+                            {
+                                <a href="@Url.Content(Model.GuardianCertificatePath)" class="btn btn-sm btn-success m-2" download>
+                                    تحميل شهادة الوصي
+                                </a>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.DeathCertificatePath))
+                            {
+                                <a href="@Url.Content(Model.DeathCertificatePath)" class="btn btn-sm btn-success m-2" download>
+                                    تحميل شهادة الوفاة
+                                </a>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.BirthCertificatePath))
+                            {
+                                <a href="@Url.Content(Model.BirthCertificatePath)" class="btn btn-sm btn-success m-2" download>
+                                    تحميل شهادة الميلاد
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center py-15">
+        <div class="text-center py-5">
             <button type="reset" class="btn btn-light me-3" data-kt-orphan-modal-action="cancel">
                 إغلاق
             </button>

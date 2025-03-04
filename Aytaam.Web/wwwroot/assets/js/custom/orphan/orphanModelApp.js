@@ -25,35 +25,35 @@ async function getdata() {
 
     console.log("FormData Object:", Object.fromEntries(formData));
 
-    if (navigator.onLine) {
-        getOrphans(formData).done(function (lstOrphans) {
-            $OrphansContainer.html("");
-            if (lstOrphans.listOfData && lstOrphans.listOfData.length > 0) {
-                $NoResult.html("");
-                lstOrphans.listOfData.forEach((p) => RenderCards(p));
-            } else if (lstOrphans.listOfData && lstOrphans.listOfData.length == 0
-                && OrphanTypeSelectValue == "" && SponsorshipTypeSelectValue == "" && AgeGroupSelectValue == "" && searchTearm == ""
-
-            ) {
-                RenderNoData();
-            }
-            else {
-                RenderNoResult();
-            }
-            RenderPagination(lstOrphans);
-        });
-    } else {
+    // if (navigator.onLine) {
+    getOrphans(formData).done(function (lstOrphans) {
         $OrphansContainer.html("");
-        $NoResult.html(`
-            <div class="card shadow-sm border my-5" style="max-width: 500px">
-                <div class="card-body text-center">
-                    <i class="bx bx-error text-danger" style="font-size: 100px"></i>
-                    <h2 class="mb-4 text-danger">لا يوجد انترنت</h2>
-                    <p class="h4 mb-4">تأكد من اتصالك بالإنترنت ثم حاول مجددًا</p>           
-                </div>
-            </div>
-        `);
-    }
+        if (lstOrphans.listOfData && lstOrphans.listOfData.length > 0) {
+            $NoResult.html("");
+            lstOrphans.listOfData.forEach((p) => RenderCards(p));
+        } else if (lstOrphans.listOfData && lstOrphans.listOfData.length == 0
+            && OrphanTypeSelectValue == "" && SponsorshipTypeSelectValue == "" && AgeGroupSelectValue == "" && searchTearm == ""
+
+        ) {
+            RenderNoData();
+        }
+        else {
+            RenderNoResult();
+        }
+        RenderPagination(lstOrphans);
+    });
+    //} else {
+    //    $OrphansContainer.html("");
+    //    $NoResult.html(`
+    //    <div class="card shadow-sm border my-5" style="max-width: 500px">
+    //        <div class="card-body text-center">
+    //            <i class="bx bx-error text-danger" style="font-size: 100px"></i>
+    //            <h2 class="mb-4 text-danger">لا يوجد انترنت</h2>
+    //            <p class="h4 mb-4">تأكد من اتصالك بالإنترنت ثم حاول مجددًا</p>           
+    //        </div>
+    //    </div>
+    //`);
+    //}
 }
 
 getdata();

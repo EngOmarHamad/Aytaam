@@ -75,8 +75,11 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
             var EndDate = user.Sponsorships?.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.EndDate;
             var StartDate = user.Sponsorships?.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.StartDate;
             int? totalMonths = ((EndDate?.Year - StartDate?.Year) * 12) + (EndDate?.Month - StartDate?.Month);
+
             int? passedMonths = ((DateTime.Today.Year - StartDate?.Year) * 12) + (DateTime.Today.Month - StartDate?.Month);
+            passedMonths = passedMonths > totalMonths ? totalMonths : passedMonths;
             double? progressPercentage = totalMonths > 0 ? (passedMonths / (double)totalMonths) * 100 : 0;
+            int? remainingMonths = totalMonths - passedMonths;
             OrphanDto dto = new()
             {
                 Code = user.Code,
@@ -95,11 +98,12 @@ public class OrphanService(AytaamDbContext db, IMapper mapper, IFileService file
                 ImagePath = user.ImagePath,
                 Amount = user.Sponsorships?.Sum(s => s.Amount),
                 NumberOfSponsorShipMonths = totalMonths,
-                NumberOfRemainderSponsorShipMonths = passedMonths,
+                NumberOfRemainderSponsorShipMonths = remainingMonths,
                 ProgressPercentage = progressPercentage == 0 ? 10 : progressPercentage,
+                BirthCertificatePath = user.BirthCertificatePath,
+                GuardianCertificatePath = user.GuardianCertificatePath,
+                DeathCertificatePath = user.DeathCertificatePath,
                 Age = CalculateAge(user.DateOfBirth)
-
-
             };
             return dto;
         }

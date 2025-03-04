@@ -55,8 +55,9 @@ public class HomeController(IOrphanService orphanService, IMapper mapper) : Cont
                 var StartDate = p.Sponsorships?.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.StartDate;
                 int? totalMonths = ((EndDate?.Year - StartDate?.Year) * 12) + (EndDate?.Month - StartDate?.Month);
                 int? passedMonths = ((DateTime.Today.Year - StartDate?.Year) * 12) + (DateTime.Today.Month - StartDate?.Month);
+                passedMonths = passedMonths > totalMonths ? totalMonths : passedMonths;
                 double? progressPercentage = totalMonths > 0 ? (passedMonths / (double)totalMonths) * 100 : 0;
-
+                int? remainingMonths = totalMonths - passedMonths;
                 OrphanDto dto = new()
                 {
                     Code = p.Code,
@@ -75,8 +76,11 @@ public class HomeController(IOrphanService orphanService, IMapper mapper) : Cont
                     ImagePath = p.ImagePath,
                     Amount = p.Sponsorships?.Sum(s => s.Amount),
                     NumberOfSponsorShipMonths = totalMonths,
-                    NumberOfRemainderSponsorShipMonths = passedMonths,
+                    NumberOfRemainderSponsorShipMonths = remainingMonths,
                     ProgressPercentage = progressPercentage == 0 ? 10 : progressPercentage,
+                    BirthCertificatePath = p.BirthCertificatePath,
+                    GuardianCertificatePath = p.GuardianCertificatePath,
+                    DeathCertificatePath = p.DeathCertificatePath,
                     Age = OrphanService.CalculateAge(p.DateOfBirth)
 
                 };
